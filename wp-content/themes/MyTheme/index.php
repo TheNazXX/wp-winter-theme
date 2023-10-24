@@ -7,12 +7,18 @@
       <?php while (have_posts()) : the_post(); ?>
         <div class="col-md-12">
           <div class="card">
-            <img src="..." class="card-img-top" alt="...">
+
+            <?php if(has_post_thumbnail()): ?>
+            <?php the_post_thumbnail('medium')?>
+            <?php else: ?>
+              <img class="post-img" src="https://picsum.photos/200" alt="random-img">
+            <?php endif;?>
+
             <div class="card-body">
               <h5 class="card-title">
                 <a href="<?php the_permalink()?>"><?php the_title()?></a>
               </h5>
-              <p class="card-text"><?php the_content('<button>Next</button>')?></p>
+              <p class="card-text"><?php the_excerpt()?></p>
               <a href="<?php the_permalink()?>" class="btn btn-primary">Go to post</a>
             </div>
           </div>

@@ -12,5 +12,19 @@
   };
 
   add_action('wp_enqueue_scripts', 'wp1_scripts');
+
+  function wp1_setup(){
+    add_theme_support('post-thumbnails');
+  };
+
+  add_action('after_setup_theme', 'wp1_setup');
+
+
+  // add_filter('intermediate_image_size', 'delelte_intermediate_image_size');
+
+  // function delete_intermediate_image_size($sizes){
+  //   unset($sizes['medium_large']);
+  //   return $sizes;
+  // };
 ?>
 
