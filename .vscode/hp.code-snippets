@@ -1,0 +1,15 @@
+{
+	"WordPress Loop": {
+    "prefix": "hp",
+    "body": [
+        "<?php if (have_posts()) : ?>",
+        "  <?php while (have_posts()) : the_post(); ?>",
+        "    <div><?php the_title(); ?></div>",
+        "  <?php endwhile; ?>",
+        "<?php else : ?>",
+        "  <p>Don't have posts</p>",
+        "<?php endif; ?>"
+    ],
+    "description": "WordPress Loop Template"
+}
+}
