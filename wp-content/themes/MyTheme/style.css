@@ -1,4 +1,3 @@
-
 /*
 Theme Name: My Theme
 Theme URI: https://wordpress.org/themes/MyTheme/
@@ -7,12 +6,73 @@ Author URI: https://wordpress.org/
 Description: Twenty Twenty-One is a blank canvas for your ideas and it makes the block editor your best brush. With new block patterns, which allow you to create a beautiful layout in a matter of seconds, this theme’s soft colors and eye-catching — yet timeless — design will let your work shine. Take it for a spin! See how Twenty Twenty-One elevates your portfolio, business website, or personal blog.
 */
 
-.card{
+
+
+.card {
   margin-bottom: 20px;
 }
 
-.post-img{
+.post-img {
   width: 100%;
   max-width: 300px;
   height: 225px;
 }
+
+.float-left {
+  float: left;
+  margin-right: 10px;
+}
+
+.pagination {
+  justify-content: center;
+}
+
+.page-numbers {
+  display: flex;
+  list-style: none;
+}
+
+.page-numbers a,
+.page-numbers span {
+  position: relative;
+  display: block;
+  padding: var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
+  font-size: var(--bs-pagination-font-size);
+  color: var(--bs-pagination-color);
+  text-decoration: none;
+  background-color: var(--bs-pagination-bg);
+  border: var(--bs-pagination-border-width) solid var(--bs-pagination-border-color);
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.page-numbers .current,
+.page-numbers .next,
+.page-numbers .prev {
+  color: white;
+  background-color: #0d6efd;
+}
+
+.page-numbers .next {
+  border-color: transparent;
+  border-top-right-radius: var(--bs-pagination-border-radius);
+  border-bottom-right-radius: var(--bs-pagination-border-radius);
+}
+
+.page-numbers .prev {
+  border-top-left-radius: var(--bs-pagination-border-radius);
+  border-bottom-left-radius: var(--bs-pagination-border-radius);
+  border-color: transparent;
+}
+
+.page-numbers a:hover {
+  background-color: #dee2e6;
+}
+
+.page-numbers .prev:hover,
+.page-numbers .next:hover {
+  background-color: #0d6efd;
+  opacity: 0.8;
+}
+
+
+
