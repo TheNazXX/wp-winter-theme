@@ -1,0 +1,13 @@
+.gc-about-title{
+  font-size: 30px;
+}
+
+.gc-about-text{
+  font-style: italic;
+}
+
+.wp-block-wp1-gc-about{
+  background-color: #f5f5f5;
+  padding: 30px;
+  border: 1px solid #f5f5f5;
+}

@@ -4,6 +4,8 @@
   */
 
   require_once __DIR__ . '/inc/wp1_custom_menu.php';
+  require __DIR__ . '/inc/gutenberg.php';
+
 
   function wp1_scripts(){
     wp_enqueue_style('wp1-bootstrap-css', get_template_directory_uri() . '/assets/bootstrap/css/bootstrap.min.css');
