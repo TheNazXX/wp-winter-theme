@@ -361,6 +361,5 @@
     </div>
   </div>
 </div>
-<!-- Team End -->
 
 <?php get_footer()?>

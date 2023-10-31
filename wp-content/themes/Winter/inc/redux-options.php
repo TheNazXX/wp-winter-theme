@@ -311,7 +311,7 @@ Redux::set_help_sidebar( $opt_name, $content );
 Redux::set_section(
 	$opt_name,
 	array(
-		'title'            => esc_html__( 'Header options', 'winter' ),
+		'title'            => esc_html__( 'Header & Footer options', 'winter' ),
 		'id'               => 'basic',
 		'desc'             => esc_html__( 'Data to be displayed in header logo', 'winter' ),
 		'customizer_width' => '400px',
@@ -333,7 +333,14 @@ Redux::set_section(
 				'type'     => 'media',
 				'title'    => esc_html__( 'Logo', 'winter' ),
 				'subtitle' => esc_html__( 'Upload here your logo', 'winter' ),
-				'desc'     => esc_html__( 'Recomended size: 320px-110px', 'winter' ),
+				'desc'     => esc_html__( 'Recomended size: 318px-110px', 'winter' ),
+			),
+			array(
+				'id'       => 'winter_logo_small',
+				'type'     => 'media',
+				'title'    => esc_html__( 'Logo_small', 'winter' ),
+				'subtitle' => esc_html__( 'Upload here your logo small', 'winter' ),
+				'desc'     => esc_html__( 'Recomended size: 200px-69px', 'winter' ),
 			),
 			array(
 				'id'       => 'winter_slogan',
@@ -346,6 +353,117 @@ Redux::set_section(
 		),
 	)
 );
+
+Redux::set_section(
+	$opt_name,	
+	array(
+		'title'            => esc_html__( 'Socials Links', 'winter' ),
+		'desc'             => esc_html__( 'Type here social links', 'winter' ),
+		'id'               => 'socials_links',
+		'subsection'       => true,
+		'customizer_width' => '700px',
+		'fields'           => array(
+			array(
+				'id'       => 'fb',
+				'type'     => 'text',
+				'title'    => esc_html__( 'Facebook Link', 'winter' ),
+				'subtitle' => esc_html__( 'Type your link', 'winter' ),
+				'desc'     => esc_html__( 'Recomended size: 318px-110px', 'winter' ),
+			),
+			array(
+				'id'       => 'inst',
+				'type'     => 'text',
+				'title'    => esc_html__( 'Instagram Link', 'winter' ),
+				'subtitle' => esc_html__( 'Type your link', 'winter' ),
+				'desc'     => esc_html__( 'Recomended size: 318px-110px', 'winter' ),
+			),
+			array(
+				'id'       => 'youtube',
+				'type'     => 'text',
+				'title'    => esc_html__( 'Youtube Link', 'winter' ),
+				'subtitle' => esc_html__( 'Youtube link', 'winter' ),
+				'desc'     => esc_html__( 'Recomended size: 318px-110px', 'winter' ),
+			),
+		),
+	)
+);
+
+Redux::set_section(
+	$opt_name,	
+	array(
+		'title'            => esc_html__( 'Home Slider', 'winter' ),
+		'desc'             => esc_html__( 'Upload data for your slider', 'winter' ),
+		'id'               => 'home_slider',
+		'subsection'       => true,
+		'customizer_width' => '700px',
+		'fields'           => array(
+			array(
+				'id'       => 'homepage_slider',
+				'type'     => 'slides',
+				'title'    => esc_html__( 'Slides Options', 'winter' ),
+				'subtitle' => esc_html__( 'Unlimited Slides', 'winter' ),
+				'desc'     => esc_html__( 'This field will be store all slides values', 'winter' ),
+				'placeholdre' => [
+					'title' 			=> __('This is the title', 'winter'),
+					'description' =>  __('Description here', 'winter'),
+					'url' 				=> __('Give us a link', 'winter')
+				]
+			)
+		),
+	)
+);
+
+Redux::set_section(
+	$opt_name,	
+	array(
+		'title'            => esc_html__( 'Contacts', 'winter' ),
+		'desc'             => esc_html__( 'Upload contacts', 'winter' ),
+		'id'               => 'contacts',
+		'subsection'       => true,
+		'customizer_width' => '700px',
+		'fields'           => array(
+			array(
+				'id'       => 'contacts_title',
+				'type'     => 'text',
+				'title'    => esc_html__( 'Contacts Title', 'winter' ),
+				'subtitle' => esc_html__( 'Title for Block contacts', 'winter' ),
+				'desc'     => esc_html__( 'Type Title', 'winter' ),
+			),
+			array(
+				'id'       => 'contacts_number',
+				'type'     => 'editor',
+				'title'    => esc_html__( 'Contacts number', 'winter' ),
+				'subtitle' => esc_html__( 'Number', 'winter' ),
+				'desc'     => esc_html__( 'Type your number', 'winter' ),
+			),
+			array(
+				'id'       => 'contacts_email',
+				'type'     => 'text',
+				'validate' => 'email',
+				'msg'      => __('Invalid Email','winter'),
+				'title'    => esc_html__( 'Contacts email', 'winter' ),
+				'subtitle' => esc_html__( 'Email', 'winter' ),
+				'desc'     => esc_html__( 'Type your email', 'winter' ),
+			),
+			array(
+				'id'       => 'shortcode',
+				'type'     => 'text',
+				'title'    => esc_html__( 'Form Shortcode', 'winter' ),
+				'subtitle' => esc_html__( 'Type here your shortcode', 'winter' ),
+				'desc'     => esc_html__( 'Shortcode for CF7 plugin', 'winter' ),
+			),
+			array(
+				'id'       => 'contacts_addres',
+				'type'     => 'text',
+				'title'    => esc_html__( 'Addres', 'winter' ),
+				'subtitle' => esc_html__( 'Addres', 'winter' ),
+				'desc'     => esc_html__( 'Type your addres', 'winter' ),
+			),
+		),
+	)
+);
+
+
 
 // require_once Redux_Core::$dir . '../sample/sections/basic-fields/checkbox.php';
 // require_once Redux_Core::$dir . '../sample/sections/basic-fields/radio.php';

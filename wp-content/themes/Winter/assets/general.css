@@ -705,14 +705,19 @@ header .center-align {
   position: relative;
 }
 header .logo {
-  background: url("images/logo.png") no-repeat center;
   width: 318px;
   height: 110px;
   margin-top: 15px;
   margin-left: -22px;
   position: relative;
 }
+
+header .logo .small-device{
+  display: none;
+}
+
 header .logo span {
+  margin-top: 5px;
   position: absolute;
   left: 90px;
   top: 97px;
@@ -1038,7 +1043,7 @@ header nav > ul > li > ul > li a {
 header nav > ul > li:hover {
   border: 2px solid rgba(255, 255, 255, 0.2);
 }
-header nav > ul > li.active {
+header nav > ul > li.current-menu-item {
   -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
   -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -2160,6 +2165,12 @@ article.blog-single .respond form .submit:active {
 }
 /* Contacts
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
+
+.contacts{
+  display: flex;
+  flex-direction: column;
+}
+
 article.contacts {
   margin-top: 45px;
 }
@@ -2631,7 +2642,7 @@ article.gallery-opened #gallery-slider .flex-control-nav li {
   margin: 0 5px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 article.gallery-opened #gallery-slider .flex-control-nav li a {
   cursor: pointer;
@@ -2953,7 +2964,7 @@ footer section .contacts h3 {
   color: #fff;
   margin-bottom: 10px;
 }
-footer section .contacts span {
+footer section .contacts span, footer section .contacts span a{
   float: left;
   clear: both;
   font-family: 'Arial';
@@ -2963,6 +2974,7 @@ footer section .contacts span {
 footer section .contacts span.tel {
   font-size: 16px;
 }
+
 footer section .contacts ul {
   float: left;
   margin-top: 15px;
@@ -3040,9 +3052,9 @@ footer section .form {
 footer section form {
   width: 100%;
 }
-footer section form #name,
-footer section form #email,
-footer section form #message {
+footer section form.wpcf7-form input[type='text'],
+footer section form.wpcf7-form input[type='email'],
+footer section form.wpcf7-form textarea {
   font: 12px 'Arial';
   padding-left: 10px;
   -webkit-box-sizing: border-box;
@@ -3070,17 +3082,17 @@ footer section form #message {
   -moz-box-shadow: inset 4px 4px 0 rgba(0, 0, 0, 0.1), 4px 4px 0 rgba(0, 0, 0, 0.2);
   box-shadow: inset 4px 4px 0 rgba(0, 0, 0, 0.1), 4px 4px 0 rgba(0, 0, 0, 0.2);
 }
-footer section form #name {
+footer section form.wpcf7-form input[type='text'] {
   float: left;
   width: 48%;
   height: 35px;
 }
-footer section form #email {
+footer section form.wpcf7-form input[type='email'] {
   float: right;
   width: 48%;
   height: 35px;
 }
-footer section form #message {
+footer section form.wpcf7-form textarea {
   padding-top: 10px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -3089,7 +3101,7 @@ footer section form #message {
   height: 70px;
   margin-top: 18px;
 }
-footer section form #submit {
+footer section form.wpcf7-form input[type='submit'] {
   margin-top: 10px;
   font-family: 'Arial';
   -webkit-transition: all 0.3s ease;
@@ -3107,11 +3119,11 @@ footer section form #submit {
   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
   background: url("images/send.png") no-repeat center;
 }
-footer section form #submit:hover {
+footer section form.wpcf7-form input[type='submit']:hover {
   background: url("images/send-h.png") no-repeat center;
   opacity: 1;
 }
-footer section form #submit:active {
+footer section form.wpcf7-form input[type='submit']:active {
   margin-top: 12px;
 }
 footer section .bottom-line {
@@ -3150,11 +3162,12 @@ footer section .bottom-line .top:hover {
   bottom: 5px;
 }
 footer section .bottom-line .center-align {
-  left: 50%;
   height: 70px;
-  margin-left: -500px;
+  margin: 0 auto;
   position: absolute;
   bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 footer section .bottom-line .left {
   display: block;
@@ -3168,7 +3181,6 @@ footer section .bottom-line .right {
   position: absolute;
   right: 0;
   bottom: 13px;
-  background: url("images/logo-small.png") no-repeat center;
   width: 78px;
   height: 37px;
 }
@@ -4065,6 +4077,7 @@ footer .waves #bui2 {
 /* Up to Landskape Phone
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
 @media (max-width: 470px) {
+
   .center-align {
     width: 200px;
   }
@@ -4079,8 +4092,16 @@ footer .waves #bui2 {
   }
   header .logo {
     width: 200px;
-    background: url("images/logo-respons.png") no-repeat center;
   }
+
+  header .logo .small-device{
+    display: block;
+  }
+
+  header .logo .big-device{
+    display: none;
+  }
+
   header .logo span {
     display: none;
   }

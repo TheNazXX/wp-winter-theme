@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The header for our theme
  *
@@ -12,8 +13,9 @@
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
+
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
+	<meta charset="<?php bloginfo('charset'); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 
@@ -21,171 +23,133 @@
 </head>
 
 <body <?php body_class(); ?>>
-<?php 
-	wp_body_open(); 
+	<?php
+	wp_body_open();
 	global $winter_options;
-?>
+	?>
 
- <!-- Background Awesomeness -->
- <div id="night"></div>
+	<!-- Background Awesomeness -->
+	<div id="night"></div>
 
-<!-- Stars -->
-<div class="back" id="stars1"></div>
-<div class="back" id="stars2"></div>
+	<!-- Stars -->
+	<div class="back" id="stars1"></div>
+	<div class="back" id="stars2"></div>
 
-<!-- Clouds -->
-<div class="back" id="cloud1"></div>
-<div class="back" id="cloud2"></div>
-<div class="back" id="cloud3"></div>
-<div class="back" id="cloud4"></div>
-<div class="back" id="cloud5"></div>
+	<!-- Clouds -->
+	<div class="back" id="cloud1"></div>
+	<div class="back" id="cloud2"></div>
+	<div class="back" id="cloud3"></div>
+	<div class="back" id="cloud4"></div>
+	<div class="back" id="cloud5"></div>
 
-<!-- Header Section -->
-<header>
+	<!-- Header Section -->
+	<header>
 		<div class="center-align cf">
 
-				<!-- Logo -->
-				<a href="<?php echo esc_url(home_url('/'))?>">
-						<div class="logo float-left"> <span><?php echo $winter_options['winter_slogan'];?></span> </div>
-				</a>
-
-				<!-- Social & Search -->
-				<div class="social float-right cf">
-						<form id="search" method="get" action="http://www.google.com">
-								<input class="search-inp" type="text" name="q" size="21" maxlength="120" placeholder="Search">
-								<input class="search-btn" type="submit" value="">
-						</form>
-						<ul>
-								<li class="facebook"><a href=""></a></li>
-								<li class="instagram"><a href=""></a></li>
-								<li class="pinterest"><a href=""></a></li>
-								<li class="twitter"><a href=""></a></li>
-								<li class="youtube"><a href=""></a></li>
-						</ul>
+			<!-- Logo -->
+			<a href="<?php echo esc_url(home_url('/')) ?>">
+				<div class="logo float-left">
+					<img class="big-device" src="http://wp1.loc/wp-content/uploads/2023/10/logo.png" alt="logo" width="318px" height="110px">
+					<img class="small-device" src="http://wp1.loc/wp-content/uploads/2023/10/logo-respons.png" alt="logo" width="200px" height="69px">
+					<span><?php echo $winter_options['winter_slogan']; ?></span>
 				</div>
+			</a>
 
-				<!-- Nav -->
-				<nav>
-						<ul class="cf">
-								<li class="active"><a href="index.html">Home</a></li>
-								<li><a href="about.html">About Us</a></li>
-								<li>
-										<a href="blog.html">Activities</a>
-										<ul>
-												<li><a href="blog-single.html">Single Post</a></li>
-												<li>
-														<a>Second level</a>
-														<ul>
-																<li><a>Third level</a></li>
-																<li><a>Third level</a></li>
-														</ul>
-												</li>
-										</ul>
-								</li>
-								<li><a href="rooms.html">Rooms</a></li>
-								<li>
-										<a>Pages</a>
-										<ul>
-												<li><a href="gallery.html">Gallery</a></li>
-												<li><a href="gallery-opened.html">Single Gallery</a></li>
-										</ul>
-								</li>
-								<li><a href="contacts.html">Contact</a></li>
-						</ul>
-				</nav>
+			<!-- Social & Search -->
+			<div class="social float-right cf">
+				<form id="search" method="get" action="<?php echo esc_url(site_url()) ?>">
+					<input class="search-inp" type="text" name="s" size="21" maxlength="120" placeholder="Search">
+					<input class="search-btn" type="submit" value="">
+				</form>
+				<ul>
+					<?php
+					if ($winter_options['fb']) { ?>
+						<li class="facebook"><a href="<?php echo esc_url($winter_options['fb']) ?>"></a></li>
+					<?php }
+					?>
+					<?php
+					if ($winter_options['inst']) { ?>
+						<li class="instagram"><a href="<?php echo esc_url($winter_options['inst']) ?>"></a></li>
+					<?php }
+					?>
+					<?php
+					if ($winter_options['youtube']) { ?>
+						<li class="youtube"><a href="<?php echo esc_url($winter_options['youtube']) ?>"></a></li>
+					<?php }
+					?>
 
-				<!-- Drop Down -->
-				<div class="drop-menu">
-						<a>Menu</a>
-						<ul class="ul-drop">
-								<li class="active"><a href="index.html">Home</a></li>
-								<li><a href="about.html">About Us</a></li>
-								<li>
-										<a>Activities</a>
-										<ul>
-												<li><a href="blog.html">Blog</a></li>
-												<li><a href="blog-single.html">Single Post</a></li>
-												<li><a href="#">Second level</a></li>
-										</ul>
-								</li>
-								<li><a href="rooms.html">Rooms</a></li>
-								<li>
-										<a>Pages</a>
-										<ul>
-												<li><a href="gallery.html">Gallery</a></li>
-												<li><a href="gallery-opened.html">Single Gallery</a></li>
-										</ul>
-								</li>
-								<li><a href="contacts.html">Contact</a></li>
-						</ul>
-				</div>
-
-		</div>
-</header>
-
-<!-- Slider -->
-<div class="center-align">
-		<div id="slider">
-				<ul class="slides">
-						<!-- -->
-						<li>
-								<div class="wood">
-										<div class="text">
-												<span class="category">Category</span>
-												<h2 class="caption">Header Text here</h2>
-												<p class="content">
-														Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur.
-												</p>
-												<a class="more" href="">More ></a>
-										</div>
-								</div>
-								<img src="css/images/home/slide1.jpg" alt="" />
-						</li>
-
-						<!-- -->
-						<li>
-								<img src="css/images/home/slide2.jpg" alt="" />
-						</li>
 				</ul>
-		</div>
-</div>
+			</div>
 
-<!-- Content Section -->
-<section id="content" class="center-align">
+			<!-- Nav -->
 
 
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'winter' ); ?></a>
-
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
 			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-					<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$winter_description = get_bloginfo( 'description', 'display' );
-			if ( $winter_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $winter_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
-
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'winter' ); ?></button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				)
-			);
+			wp_nav_menu([
+				'theme_location' => 'menu-1',
+				'menu_id' => 'primary-menu',
+				'menu_class' => 'cf',
+				'container' => 'nav'
+			])
 			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
+
+
+			<!-- Drop Down -->
+			<div class="drop-menu">
+				<a>Menu</a>
+
+				<?php
+				wp_nav_menu([
+					'theme_location' => 'menu-1',
+					'menu_id' => 'mobile-menu',
+					'menu_class' => 'ul-drop',
+					'container' => 'ul'
+				])
+				?>
+			</div>
+
+		</div>
+	</header>
+	<?php
+	if (is_front_page()) { ?>
+		<section id="content" class="center-align">
+			<div class="center-align">
+				<div id="slider">
+					<?php
+					$slides = '';
+					$slides = $winter_options['homepage_slider'];
+					?>
+					<ul class="slides">
+
+						<?php
+						if ($slides) {
+							foreach ($slides as $slide) { ?>
+								<li>
+									<div class="wood">
+										<div class="text">
+											<?php if($slide['title']){?><h2 class="caption"><?php echo esc_html($slide['title'])?></h2><?php }?>
+											<?php if($slide['description']){?><p class="content"><?php echo esc_html($slide['description'])?></p><?php }?>
+											<?php if($slide['url']){?><a class="more" href="<?php esc_url($slide['url'])?>"><?php esc_html_e('More >', 'winter')?></a><?php }?>
+										</div>
+									</div>
+									<img src="http://wp1.loc/wp-content/uploads/2023/10/slide1.jpg" alt="slide-img" />
+								</li>
+						<?php };
+						}
+						?>
+					</ul>
+				</div>
+			</div>
+		<?php } else { ?>
+			<section class="center-align">
+
+				<div class="title-page">
+					<h2><?php the_title() ?></h2>
+					<div class="page"><span class="home"></span> <a href="<?php echo esc_url(home_url()) ?>">Home</a> &nbsp; <span class="arrow">→</span> &nbsp;
+						<?php the_title() ?></div>
+				</div>
+
+
+				<div class="dotted-line"></div>
+			<?php }
+			?>
