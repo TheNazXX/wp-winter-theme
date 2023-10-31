@@ -15,10 +15,7 @@ if ( ! class_exists( 'Redux' ) ) {
 }
 
 // This is your option name where all the Redux data is stored.
-$opt_name = 'redux_demo';  // YOU MUST CHANGE THIS.  DO NOT USE 'redux_demo' IN YOUR PROJECT!!!
-
-// Uncomment to disable demo mode.
-/* Redux::disable_demo(); */  // phpcs:ignore Squiz.PHP.CommentedOutCode
+$opt_name = 'winter_options'; 
 
 $dir = __DIR__ . DIRECTORY_SEPARATOR;
 
@@ -222,21 +219,15 @@ $args = array(
 // PLEASE CHANGE THESE SETTINGS IN YOUR THEME BEFORE RELEASING YOUR PRODUCT!!
 // If these are left unchanged, they will not display in your panel!
 $args['admin_bar_links'][] = array(
-	'id'    => 'redux-docs',
-	'href'  => '//devs.redux.io/',
-	'title' => __( 'Documentation', 'your-textdomain-here' ),
+	'id'    => 'winter',
+	'href'  => '#',
+	'title' => __( 'Documentation', 'winter' ),
 );
 
 $args['admin_bar_links'][] = array(
 	'id'    => 'redux-support',
-	'href'  => '//github.com/ReduxFramework/redux-framework/issues',
-	'title' => __( 'Support', 'your-textdomain-here' ),
-);
-
-$args['admin_bar_links'][] = array(
-	'id'    => 'redux-extensions',
-	'href'  => 'redux.io/extensions',
-	'title' => __( 'Extensions', 'your-textdomain-here' ),
+	'href'  => '#',
+	'title' => __( 'Support', 'winter' ),
 );
 
 // SOCIAL ICONS -> Setup custom links in the footer for quick links in your panel footer icons.
@@ -320,276 +311,304 @@ Redux::set_help_sidebar( $opt_name, $content );
 Redux::set_section(
 	$opt_name,
 	array(
-		'title'            => esc_html__( 'Basic Fields', 'your-textdomain-here' ),
+		'title'            => esc_html__( 'Header options', 'winter' ),
 		'id'               => 'basic',
-		'desc'             => esc_html__( 'These are really basic fields!', 'your-textdomain-here' ),
+		'desc'             => esc_html__( 'Data to be displayed in header logo', 'winter' ),
 		'customizer_width' => '400px',
 		'icon'             => 'el el-home',
 	)
 );
 
-require_once Redux_Core::$dir . '../sample/sections/basic-fields/checkbox.php';
-require_once Redux_Core::$dir . '../sample/sections/basic-fields/radio.php';
-require_once Redux_Core::$dir . '../sample/sections/basic-fields/sortable.php';
-require_once Redux_Core::$dir . '../sample/sections/basic-fields/text.php';
-require_once Redux_Core::$dir . '../sample/sections/basic-fields/multi-text.php';
-require_once Redux_Core::$dir . '../sample/sections/basic-fields/password.php';
-require_once Redux_Core::$dir . '../sample/sections/basic-fields/textarea.php';
-
-// -> START Editors.
 Redux::set_section(
-	$opt_name,
+	$opt_name,	
 	array(
-		'title'            => esc_html__( 'Editors', 'your-textdomain-here' ),
-		'id'               => 'editor',
-		'customizer_width' => '500px',
-		'icon'             => 'el el-edit',
-	)
-);
-
-require_once Redux_Core::$dir . '../sample/sections/editors/wordpress-editor.php';
-require_once Redux_Core::$dir . '../sample/sections/editors/ace-editor.php';
-
-// -> START Color Selection.
-Redux::set_section(
-	$opt_name,
-	array(
-		'title' => esc_html__( 'Color Selection', 'your-textdomain-here' ),
-		'id'    => 'color',
-		'icon'  => 'el el-brush',
-	)
-);
-
-require_once Redux_Core::$dir . '../sample/sections/color-selection/color.php';
-require_once Redux_Core::$dir . '../sample/sections/color-selection/color-gradient.php';
-require_once Redux_Core::$dir . '../sample/sections/color-selection/color-rgba.php';
-require_once Redux_Core::$dir . '../sample/sections/color-selection/link-color.php';
-require_once Redux_Core::$dir . '../sample/sections/color-selection/palette.php';
-require_once Redux_Core::$dir . '../sample/sections/color-selection/color-palette.php';
-
-// -> START Design Fields.
-Redux::set_section(
-	$opt_name,
-	array(
-		'title' => esc_html__( 'Design Fields', 'your-textdomain-here' ),
-		'id'    => 'design',
-		'icon'  => 'el el-wrench',
-	)
-);
-
-require_once Redux_Core::$dir . '../sample/sections/design-fields/background.php';
-require_once Redux_Core::$dir . '../sample/sections/design-fields/box-shadow.php';
-require_once Redux_Core::$dir . '../sample/sections/design-fields/border.php';
-require_once Redux_Core::$dir . '../sample/sections/design-fields/dimensions.php';
-require_once Redux_Core::$dir . '../sample/sections/design-fields/spacing.php';
-
-// -> START Media Uploads.
-Redux::set_section(
-	$opt_name,
-	array(
-		'title' => esc_html__( 'Media Uploads', 'your-textdomain-here' ),
-		'id'    => 'media',
-		'icon'  => 'el el-picture',
-	)
-);
-
-require_once Redux_Core::$dir . '../sample/sections/media-uploads/gallery.php';
-require_once Redux_Core::$dir . '../sample/sections/media-uploads/media.php';
-require_once Redux_Core::$dir . '../sample/sections/media-uploads/multi-media.php';
-require_once Redux_Core::$dir . '../sample/sections/media-uploads/slides.php';
-
-// -> START Presentation Fields.
-Redux::set_section(
-	$opt_name,
-	array(
-		'title' => esc_html__( 'Presentation Fields', 'your-textdomain-here' ),
-		'id'    => 'presentation',
-		'icon'  => 'el el-screen',
-	)
-);
-
-require_once Redux_Core::$dir . '../sample/sections/presentation-fields/divide.php';
-require_once Redux_Core::$dir . '../sample/sections/presentation-fields/info.php';
-require_once Redux_Core::$dir . '../sample/sections/presentation-fields/section.php';
-
-Redux::set_section(
-	$opt_name,
-	array(
-		'id'   => 'presentation-divide-sample',
-		'type' => 'divide',
-	)
-);
-
-// -> START Switch & Button Set.
-Redux::set_section(
-	$opt_name,
-	array(
-		'title' => esc_html__( 'Switch / Button Set', 'your-textdomain-here' ),
-		'id'    => 'switch_buttonset',
-		'icon'  => 'el el-cogs',
-	)
-);
-
-require_once Redux_Core::$dir . '../sample/sections/switch-button/button-set.php';
-require_once Redux_Core::$dir . '../sample/sections/switch-button/switch.php';
-
-// -> START Select Fields.
-Redux::set_section(
-	$opt_name,
-	array(
-		'title' => esc_html__( 'Select Fields', 'your-textdomain-here' ),
-		'id'    => 'select',
-		'icon'  => 'el el-list-alt',
-	)
-);
-
-require_once Redux_Core::$dir . '../sample/sections/select-fields/select.php';
-require_once Redux_Core::$dir . '../sample/sections/select-fields/image-select.php';
-require_once Redux_Core::$dir . '../sample/sections/select-fields/select-image.php';
-
-// -> START Slider / Spinner.
-Redux::set_section(
-	$opt_name,
-	array(
-		'title' => esc_html__( 'Slider / Spinner', 'your-textdomain-here' ),
-		'id'    => 'slider_spinner',
-		'icon'  => 'el el-adjust-alt',
-	)
-);
-
-require_once Redux_Core::$dir . '../sample/sections/slider-spinner/slider.php';
-require_once Redux_Core::$dir . '../sample/sections/slider-spinner/spinner.php';
-
-// -> START Typography.
-require_once Redux_Core::$dir . '../sample/sections/typography/typography.php';
-
-// -> START Additional Types.
-Redux::set_section(
-	$opt_name,
-	array(
-		'title' => esc_html__( 'Additional Types', 'your-textdomain-here' ),
-		'id'    => 'additional',
-		'icon'  => 'el el-magic',
-	)
-);
-
-require_once Redux_Core::$dir . '../sample/sections/additional-types/date.php';
-require_once Redux_Core::$dir . '../sample/sections/additional-types/date-time-picker.php';
-require_once Redux_Core::$dir . '../sample/sections/additional-types/sorter.php';
-require_once Redux_Core::$dir . '../sample/sections/additional-types/raw.php';
-
-Redux::set_section(
-	$opt_name,
-	array(
-		'title' => esc_html__( 'Advanced Features', 'your-textdomain-here' ),
-		'icon'  => 'el el-thumbs-up',
-	)
-);
-
-require_once Redux_Core::$dir . '../sample/sections/advanced-features/callback.php';
-
-// -> START Validation.
-require_once Redux_Core::$dir . '../sample/sections/advanced-features/field-validation.php';
-
-// -> START Sanitizing.
-require_once Redux_Core::$dir . '../sample/sections/advanced-features/field-sanitizing.php';
-
-// -> START Required.
-require_once Redux_Core::$dir . '../sample/sections/advanced-features/field-required-linking.php';
-
-require_once Redux_Core::$dir . '../sample/sections/advanced-features/wpml-integration.php';
-
-// -> START Disabling.
-Redux::set_section(
-	$opt_name,
-	array(
-		'title' => esc_html__( 'Disabling', 'your-textdomain-here' ),
-		'icon'  => 'el el-lock',
-	)
-);
-
-require_once Redux_Core::$dir . '../sample/sections/disabling/disable-field.php';
-require_once Redux_Core::$dir . '../sample/sections/disabling/disable-section.php';
-
-// -> START Extensions.
-Redux::set_section(
-	$opt_name,
-	array(
-		'title' => esc_html__( 'Redux Extensions', 'your-textdomain-here' ),
-		'id'    => 'redux-extensions',
-		'icon'  => 'el el-redux',
-		'class' => 'pro_highlight',
-		'desc'  => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-extensions/" target="_blank">https://devs.redux.io/core-extensions/</a>',
-	)
-);
-
-require_once Redux_Core::$dir . '../sample/sections/extensions/accordion.php';
-require_once Redux_Core::$dir . '../sample/sections/extensions/custom-fonts.php';
-require_once Redux_Core::$dir . '../sample/sections/extensions/google-maps.php';
-require_once Redux_Core::$dir . '../sample/sections/extensions/icon-select.php';
-require_once Redux_Core::$dir . '../sample/sections/extensions/js-button.php';
-require_once Redux_Core::$dir . '../sample/sections/extensions/repeater.php';
-require_once Redux_Core::$dir . '../sample/sections/extensions/search.php';
-require_once Redux_Core::$dir . '../sample/sections/extensions/shortcodes.php';
-require_once Redux_Core::$dir . '../sample/sections/extensions/social-profiles.php';
-require_once Redux_Core::$dir . '../sample/sections/extensions/widget-areas.php';
-require_once Redux_Core::$dir . '../sample/sections/extensions/taxonomy.php';
-require_once Redux_Core::$dir . '../sample/sections/extensions/users.php';
-
-if ( class_exists( 'Redux_Pro' ) ) {
-	require_once Redux_Core::$dir . '../sample/sections/extensions/color-scheme.php';
-}
-
-/**
- * Metaboxes
- */
-require_once Redux_Core::$dir . '../sample/metaboxes.php';
-
-/**
- * Raw README
- */
-if ( file_exists( $dir . '/../README.md' ) ) {
-	$section = array(
-		'icon'   => 'el el-list-alt',
-		'title'  => esc_html__( 'Documentation', 'your-textdomain-here' ),
-		'fields' => array(
+		'title'            => esc_html__( 'Logo Data', 'winter' ),
+		'desc'             => esc_html__( 'Update the logo and specify the slogan', 'winter' ),
+		'id'               => 'sites_logos',
+		'subsection'       => true,
+		'customizer_width' => '700px',
+		'fields'           => array(
 			array(
-				'id'           => 'opt-raw-documentation',
-				'type'         => 'raw',
-				'markdown'     => true,
-				'content_path' => __DIR__ . '/../README.md', // FULL PATH, not relative, please.
+				'id'       => 'winter_logo',
+				'type'     => 'media',
+				'title'    => esc_html__( 'Logo', 'winter' ),
+				'subtitle' => esc_html__( 'Upload here your logo', 'winter' ),
+				'desc'     => esc_html__( 'Recomended size: 320px-110px', 'winter' ),
 			),
-		),
-	);
-
-	Redux::set_section( $opt_name, $section );
-}
-
-Redux::set_section(
-	$opt_name,
-	array(
-		'icon'            => 'el el-list-alt',
-		'title'           => esc_html__( 'Customizer Only', 'your-textdomain-here' ),
-		'desc'            => '<p class="description">' . esc_html__( 'This Section should be visible only in Customizer', 'your-textdomain-here' ) . '</p>',
-		'customizer_only' => true,
-		'fields'          => array(
 			array(
-				'id'              => 'opt-customizer-only',
-				'type'            => 'select',
-				'title'           => esc_html__( 'Customizer Only Option', 'your-textdomain-here' ),
-				'subtitle'        => esc_html__( 'The subtitle is NOT visible in customizer', 'your-textdomain-here' ),
-				'desc'            => esc_html__( 'The field desc is NOT visible in customizer.', 'your-textdomain-here' ),
-				'customizer_only' => true,
-				'options'         => array(
-					'1' => esc_html__( 'Opt 1', 'your-textdomain-here' ),
-					'2' => esc_html__( 'Opt 2', 'your-textdomain-here' ),
-					'3' => esc_html__( 'Opt 3', 'your-textdomain-here' ),
-				),
-				'default'         => '2',
+				'id'       => 'winter_slogan',
+				'type'     => 'text',
+				'title'    => esc_html__( 'Logo slogan', 'winter' ),
+				'subtitle' => esc_html__( 'Type here your Logo slogan', 'winter' ),
+				'desc'     => esc_html__( 'Your Slogan', 'winter' ),
+				'default'  => 'Slogan text here',
 			),
 		),
 	)
 );
+
+// require_once Redux_Core::$dir . '../sample/sections/basic-fields/checkbox.php';
+// require_once Redux_Core::$dir . '../sample/sections/basic-fields/radio.php';
+// require_once Redux_Core::$dir . '../sample/sections/basic-fields/sortable.php';
+// require_once Redux_Core::$dir . '../sample/sections/basic-fields/text.php';
+// require_once Redux_Core::$dir . '../sample/sections/basic-fields/multi-text.php';
+// require_once Redux_Core::$dir . '../sample/sections/basic-fields/password.php';
+// require_once Redux_Core::$dir . '../sample/sections/basic-fields/textarea.php';
+
+// // // -> START Editors.
+// Redux::set_section(
+// 	$opt_name,
+// 	array(
+// 		'title'            => esc_html__( 'Header Options', 'winter' ),
+// 		'id'               => 'basic',
+// 		'customizer_width' => '500px',
+// 		'icon'             => 'el el-edit',
+// 	)
+// );
+
+// require_once Redux_Core::$dir . '../sample/sections/editors/wordpress-editor.php';
+// require_once Redux_Core::$dir . '../sample/sections/editors/ace-editor.php';
+
+// // -> START Color Selection.
+// Redux::set_section(
+// 	$opt_name,
+// 	array(
+// 		'title' => esc_html__( 'Color Selection', 'your-textdomain-here' ),
+// 		'id'    => 'color',
+// 		'icon'  => 'el el-brush',
+// 	)
+// );
+
+// require_once Redux_Core::$dir . '../sample/sections/color-selection/color.php';
+// require_once Redux_Core::$dir . '../sample/sections/color-selection/color-gradient.php';
+// require_once Redux_Core::$dir . '../sample/sections/color-selection/color-rgba.php';
+// require_once Redux_Core::$dir . '../sample/sections/color-selection/link-color.php';
+// require_once Redux_Core::$dir . '../sample/sections/color-selection/palette.php';
+// require_once Redux_Core::$dir . '../sample/sections/color-selection/color-palette.php';
+
+// // -> START Design Fields.
+// Redux::set_section(
+// 	$opt_name,
+// 	array(
+// 		'title' => esc_html__( 'Design Fields', 'your-textdomain-here' ),
+// 		'id'    => 'design',
+// 		'icon'  => 'el el-wrench',
+// 	)
+// );
+
+// require_once Redux_Core::$dir . '../sample/sections/design-fields/background.php';
+// require_once Redux_Core::$dir . '../sample/sections/design-fields/box-shadow.php';
+// require_once Redux_Core::$dir . '../sample/sections/design-fields/border.php';
+// require_once Redux_Core::$dir . '../sample/sections/design-fields/dimensions.php';
+// require_once Redux_Core::$dir . '../sample/sections/design-fields/spacing.php';
+
+// // -> START Media Uploads.
+// Redux::set_section(
+// 	$opt_name,
+// 	array(
+// 		'title' => esc_html__( 'Media Uploads', 'your-textdomain-here' ),
+// 		'id'    => 'media',
+// 		'icon'  => 'el el-picture',
+// 	)
+// );
+
+// require_once Redux_Core::$dir . '../sample/sections/media-uploads/gallery.php';
+// require_once Redux_Core::$dir . '../sample/sections/media-uploads/media.php';
+// require_once Redux_Core::$dir . '../sample/sections/media-uploads/multi-media.php';
+// require_once Redux_Core::$dir . '../sample/sections/media-uploads/slides.php';
+
+// // -> START Presentation Fields.
+// Redux::set_section(
+// 	$opt_name,
+// 	array(
+// 		'title' => esc_html__( 'Presentation Fields', 'your-textdomain-here' ),
+// 		'id'    => 'presentation',
+// 		'icon'  => 'el el-screen',
+// 	)
+// );
+
+// require_once Redux_Core::$dir . '../sample/sections/presentation-fields/divide.php';
+// require_once Redux_Core::$dir . '../sample/sections/presentation-fields/info.php';
+// require_once Redux_Core::$dir . '../sample/sections/presentation-fields/section.php';
+
+// Redux::set_section(
+// 	$opt_name,
+// 	array(
+// 		'id'   => 'presentation-divide-sample',
+// 		'type' => 'divide',
+// 	)
+// );
+
+// // -> START Switch & Button Set.
+// Redux::set_section(
+// 	$opt_name,
+// 	array(
+// 		'title' => esc_html__( 'Switch / Button Set', 'your-textdomain-here' ),
+// 		'id'    => 'switch_buttonset',
+// 		'icon'  => 'el el-cogs',
+// 	)
+// );
+
+// require_once Redux_Core::$dir . '../sample/sections/switch-button/button-set.php';
+// require_once Redux_Core::$dir . '../sample/sections/switch-button/switch.php';
+
+// // -> START Select Fields.
+// Redux::set_section(
+// 	$opt_name,
+// 	array(
+// 		'title' => esc_html__( 'Select Fields', 'your-textdomain-here' ),
+// 		'id'    => 'select',
+// 		'icon'  => 'el el-list-alt',
+// 	)
+// );
+
+// require_once Redux_Core::$dir . '../sample/sections/select-fields/select.php';
+// require_once Redux_Core::$dir . '../sample/sections/select-fields/image-select.php';
+// require_once Redux_Core::$dir . '../sample/sections/select-fields/select-image.php';
+
+// // -> START Slider / Spinner.
+// Redux::set_section(
+// 	$opt_name,
+// 	array(
+// 		'title' => esc_html__( 'Slider / Spinner', 'your-textdomain-here' ),
+// 		'id'    => 'slider_spinner',
+// 		'icon'  => 'el el-adjust-alt',
+// 	)
+// );
+
+// require_once Redux_Core::$dir . '../sample/sections/slider-spinner/slider.php';
+// require_once Redux_Core::$dir . '../sample/sections/slider-spinner/spinner.php';
+
+// // -> START Typography.
+// require_once Redux_Core::$dir . '../sample/sections/typography/typography.php';
+
+// // -> START Additional Types.
+// Redux::set_section(
+// 	$opt_name,
+// 	array(
+// 		'title' => esc_html__( 'Additional Types', 'your-textdomain-here' ),
+// 		'id'    => 'additional',
+// 		'icon'  => 'el el-magic',
+// 	)
+// );
+
+// require_once Redux_Core::$dir . '../sample/sections/additional-types/date.php';
+// require_once Redux_Core::$dir . '../sample/sections/additional-types/date-time-picker.php';
+// require_once Redux_Core::$dir . '../sample/sections/additional-types/sorter.php';
+// require_once Redux_Core::$dir . '../sample/sections/additional-types/raw.php';
+
+// Redux::set_section(
+// 	$opt_name,
+// 	array(
+// 		'title' => esc_html__( 'Advanced Features', 'your-textdomain-here' ),
+// 		'icon'  => 'el el-thumbs-up',
+// 	)
+// );
+
+// require_once Redux_Core::$dir . '../sample/sections/advanced-features/callback.php';
+
+// // -> START Validation.
+// require_once Redux_Core::$dir . '../sample/sections/advanced-features/field-validation.php';
+
+// // -> START Sanitizing.
+// require_once Redux_Core::$dir . '../sample/sections/advanced-features/field-sanitizing.php';
+
+// // -> START Required.
+// require_once Redux_Core::$dir . '../sample/sections/advanced-features/field-required-linking.php';
+
+// require_once Redux_Core::$dir . '../sample/sections/advanced-features/wpml-integration.php';
+
+// // -> START Disabling.
+// Redux::set_section(
+// 	$opt_name,
+// 	array(
+// 		'title' => esc_html__( 'Disabling', 'your-textdomain-here' ),
+// 		'icon'  => 'el el-lock',
+// 	)
+// );
+
+// require_once Redux_Core::$dir . '../sample/sections/disabling/disable-field.php';
+// require_once Redux_Core::$dir . '../sample/sections/disabling/disable-section.php';
+
+// // -> START Extensions.
+// Redux::set_section(
+// 	$opt_name,
+// 	array(
+// 		'title' => esc_html__( 'Redux Extensions', 'your-textdomain-here' ),
+// 		'id'    => 'redux-extensions',
+// 		'icon'  => 'el el-redux',
+// 		'class' => 'pro_highlight',
+// 		'desc'  => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/core-extensions/" target="_blank">https://devs.redux.io/core-extensions/</a>',
+// 	)
+// );
+
+// require_once Redux_Core::$dir . '../sample/sections/extensions/accordion.php';
+// require_once Redux_Core::$dir . '../sample/sections/extensions/custom-fonts.php';
+// require_once Redux_Core::$dir . '../sample/sections/extensions/google-maps.php';
+// require_once Redux_Core::$dir . '../sample/sections/extensions/icon-select.php';
+// require_once Redux_Core::$dir . '../sample/sections/extensions/js-button.php';
+// require_once Redux_Core::$dir . '../sample/sections/extensions/repeater.php';
+// require_once Redux_Core::$dir . '../sample/sections/extensions/search.php';
+// require_once Redux_Core::$dir . '../sample/sections/extensions/shortcodes.php';
+// require_once Redux_Core::$dir . '../sample/sections/extensions/social-profiles.php';
+// require_once Redux_Core::$dir . '../sample/sections/extensions/widget-areas.php';
+// require_once Redux_Core::$dir . '../sample/sections/extensions/taxonomy.php';
+// require_once Redux_Core::$dir . '../sample/sections/extensions/users.php';
+
+// if ( class_exists( 'Redux_Pro' ) ) {
+// 	require_once Redux_Core::$dir . '../sample/sections/extensions/color-scheme.php';
+// }
+
+// /**
+//  * Metaboxes
+//  */
+// require_once Redux_Core::$dir . '../sample/metaboxes.php';
+
+// /**
+//  * Raw README
+//  */
+// if ( file_exists( $dir . '/../README.md' ) ) {
+// 	$section = array(
+// 		'icon'   => 'el el-list-alt',
+// 		'title'  => esc_html__( 'Documentation', 'your-textdomain-here' ),
+// 		'fields' => array(
+// 			array(
+// 				'id'           => 'opt-raw-documentation',
+// 				'type'         => 'raw',
+// 				'markdown'     => true,
+// 				'content_path' => __DIR__ . '/../README.md', // FULL PATH, not relative, please.
+// 			),
+// 		),
+// 	);
+
+// 	Redux::set_section( $opt_name, $section );
+// }
+
+// Redux::set_section(
+// 	$opt_name,
+// 	array(
+// 		'icon'            => 'el el-list-alt',
+// 		'title'           => esc_html__( 'Customizer Only', 'your-textdomain-here' ),
+// 		'desc'            => '<p class="description">' . esc_html__( 'This Section should be visible only in Customizer', 'your-textdomain-here' ) . '</p>',
+// 		'customizer_only' => true,
+// 		'fields'          => array(
+// 			array(
+// 				'id'              => 'opt-customizer-only',
+// 				'type'            => 'select',
+// 				'title'           => esc_html__( 'Customizer Only Option', 'your-textdomain-here' ),
+// 				'subtitle'        => esc_html__( 'The subtitle is NOT visible in customizer', 'your-textdomain-here' ),
+// 				'desc'            => esc_html__( 'The field desc is NOT visible in customizer.', 'your-textdomain-here' ),
+// 				'customizer_only' => true,
+// 				'options'         => array(
+// 					'1' => esc_html__( 'Opt 1', 'your-textdomain-here' ),
+// 					'2' => esc_html__( 'Opt 2', 'your-textdomain-here' ),
+// 					'3' => esc_html__( 'Opt 3', 'your-textdomain-here' ),
+// 				),
+// 				'default'         => '2',
+// 			),
+// 		),
+// 	)
+// );
 
 /*
  * <--- END SECTIONS
