@@ -21,7 +21,6 @@ function winter_setup() {
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
-
 	
 	add_theme_support( 'title-tag' );
 
@@ -129,6 +128,7 @@ function winter_scripts() {
 	wp_enqueue_script( 'scrollable', get_template_directory_uri() . '/assets/js/libs/scrollable.js', array(), _S_VERSION, true );
 	wp_enqueue_script( 'flexslider', get_template_directory_uri() . '/assets/js/libs/jquery.flexslider-min.js', array(), _S_VERSION, true );
 
+
 	wp_enqueue_script( 'winter-scripts', get_template_directory_uri() . '/assets/js/scripts.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -137,9 +137,15 @@ function winter_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'winter_scripts' );
 
-/**
- * Implement the Custom Header feature.
- */
+function ale_add_scripts($hook) {
+	if('post-new.php' == $hook || 'post.php' == $hook){
+		wp_enqueue_script( 'winter_metaboxes', get_template_directory_uri()  . '/assets/js/admin/metaboxes.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-datepicker', 'media-upload', 'thickbox') );
+	}
+}
+add_action('admin_enqueue_scripts', 'ale_add_scripts');
+
+add_image_size('post-front', 235, 183, true);
+
 require get_template_directory() . '/inc/custom-header.php';
 
 
@@ -227,16 +233,16 @@ function aletheme_metaboxes($meta_boxes) {
 
 
 	$meta_boxes[] = array(
-		'id'         => 'page_metabox',
-		'title'      => 'Example Options',
+		'id'         => 'homepage_metabox',
+		'title'      => 'Homepage Options',
 		'pages'      => array( 'page', ), // Post type
 		'context'    => 'normal',
 		'priority'   => 'high',
 		'show_names' => true, // Show field names on the left
-		// 'show_on'    => array( 'key' => 'page-template', 'value' => array('template-home.php'), ), // Specific post templates to display this metabox
+		'show_on'    => array( 'key' => 'page-template', 'value' => array('template-home.php'), ), // Specific post templates to display this metabox
 		'fields' => array(
 			array(
-				'name' => __('About Photo','winter'),
+				'name' => __('About Photo', 'winter'),
 				'desc' => __('Upload a photo. Recommended size: 280-194px','winter'),
 				'id'   => $prefix . 'about_photo',
 				'std'  => '',
@@ -250,8 +256,8 @@ function aletheme_metaboxes($meta_boxes) {
 				'type' => 'text',
 			),
 			array(
-				'name' => __('Description About Box','aletheme'),
-				'desc' => __('Type the description','aletheme'),
+				'name' => __('Description About Box','winter'),
+				'desc' => __('Type the description','winter'),
 				'id'   => $prefix . 'about_desc',
 				'std'  => '',
 				'type' => 'wysiwyg',
@@ -263,171 +269,49 @@ function aletheme_metaboxes($meta_boxes) {
 				'std'  => '',
 				'type' => 'text',
 			),
-
-
 			array(
-				'name' => __('Info Title 1','winter'),
-				'desc' => __('Type here the Info Title 1','winter'),
+				'name' => __('Info title 1','winter'),
+				'desc' => __('Type here the  Info Title 1','winter'),
 				'id'   => $prefix . 'info_title_1',
 				'std'  => '',
 				'type' => 'text',
 			),
 			array(
-				'name' => __('Info Description 1','winter'),
-				'desc' => __('Type here the Info Description 1','winter'),
-				'id'   => $prefix . 'info_description_1',
-				'std'  => '',
-				'type' => 'text',
-			),
-			array(
-				'name' => __('Info Title 2','winter'),
-				'desc' => __('Type here the Info Title 2','winter'),
+				'name' => __('Info title 2','winter'),
+				'desc' => __('Type here the  Info Title 2','winter'),
 				'id'   => $prefix . 'info_title_2',
 				'std'  => '',
 				'type' => 'text',
 			),
 			array(
-				'name' => __('Info Description 2','winter'),
-				'desc' => __('Type here the Info Description 2','winter'),
-				'id'   => $prefix . 'info_description_2',
-				'std'  => '',
-				'type' => 'text',
-			),
-			array(
-				'name' => __('Info Title 3','winter'),
-				'desc' => __('Type here the Info Title 3','winter'),
+				'name' => __('Info title 3','winter'),
+				'desc' => __('Type here the  Info Title 3','winter'),
 				'id'   => $prefix . 'info_title_3',
 				'std'  => '',
 				'type' => 'text',
 			),
 			array(
-				'name' => __('Info Description 3','winter'),
-				'desc' => __('Type here the Info Description 3','winter'),
+				'name' => __('Info description 1','winter'),
+				'desc' => __('Type here the info Description 1','winter'),
+				'id'   => $prefix . 'info_description_1',
+				'std'  => '',
+				'type' => 'text',
+			),
+			array(
+				'name' => __('Info description 2','winter'),
+				'desc' => __('Type here the info Description 2','winter'),
+				'id'   => $prefix . 'info_description_2',
+				'std'  => '',
+				'type' => 'text',
+			),
+			array(
+				'name' => __('Info description 3','winter'),
+				'desc' => __('Type here the info Description 3','winter'),
 				'id'   => $prefix . 'info_description_3',
 				'std'  => '',
 				'type' => 'text',
 			),
-		)
-	);
-
-
-	$meta_boxes[] = array(
-		'id'         => 'about_metabox',
-		'title'      => 'About Data',
-		'pages'      => array( 'page', ), // Post type
-		'context'    => 'normal',
-		'priority'   => 'high',
-		'show_names' => true, // Show field names on the left
-		'show_on'    => array( 'key' => 'page-template', 'value' => array('template-about.php'), ), // Specific post templates to display this metabox
-		'fields' => array(
-			array(
-				'name' => __('Teacher Block title','winter'),
-				'desc' => __('Specify the Teacher Block Title','winter'),
-				'id'   => $prefix . 'about_teachers',
-				'std'  => '',
-				'type' => 'text',
-			),
-		)
-	);
-
-	$meta_boxes[] = array(
-		'id'         => 'teachers_metabox',
-		'title'      => 'Teachers Social Links',
-		'pages'      => array( 'teachers', ), // Post type
-		'context'    => 'normal',
-		'priority'   => 'high',
-		'show_names' => true, // Show field names on the left
-		//'show_on'    => array( 'key' => 'page-template', 'value' => array('template-about.php'), ), // Specific post templates to display this metabox
-		'fields' => array(
-			array(
-				'name' => __('Facebook Link','winter'),
-				'desc' => __('Add the link','winter'),
-				'id'   => $prefix . 'fb_link',
-				'std'  => '',
-				'type' => 'text',
-			),
-			array(
-				'name' => __('Twitter Link','winter'),
-				'desc' => __('Add the link','winter'),
-				'id'   => $prefix . 'twi_link',
-				'std'  => '',
-				'type' => 'text',
-			),
-			array(
-				'name' => __('Pinterest Link','winter'),
-				'desc' => __('Add the link','winter'),
-				'id'   => $prefix . 'pin_link',
-				'std'  => '',
-				'type' => 'text',
-			),
-		)
-	);
-
-	$meta_boxes[] = array(
-		'id'         => 'contact_metabox',
-		'title'      => esc_html__('Contact Info','winter'),
-		'pages'      => array( 'page', ), // Post type
-		'context'    => 'normal',
-		'priority'   => 'high',
-		'show_names' => true, // Show field names on the left
-		'show_on'    => array( 'key' => 'page-template', 'value' => array('template-contact.php'), ), // Specific post templates to display this metabox
-		'fields' => array(
-			array(
-				'name' => esc_html__('Address Label','winter'),
-				'desc' => esc_html__('Add the info','winter'),
-				'id'   => $prefix . 'address_label',
-				'std'  => '',
-				'type' => 'text',
-			),
-			array(
-				'name' => esc_html__('Address','winter'),
-				'desc' => esc_html__('Add the info','winter'),
-				'id'   => $prefix . 'address',
-				'std'  => '',
-				'type' => 'text',
-			),
-			array(
-				'name' => __('Phone Label','winter'),
-				'desc' => __('Add the info','winter'),
-				'id'   => $prefix . 'phone_label',
-				'std'  => '',
-				'type' => 'text',
-			),
-			array(
-				'name' => __('Phone','winter'),
-				'desc' => __('Add the info','winter'),
-				'id'   => $prefix . 'phone',
-				'std'  => '',
-				'type' => 'text',
-			),
-			array(
-				'name' => __('Email Label','winter'),
-				'desc' => __('Add the info','winter'),
-				'id'   => $prefix . 'email_label',
-				'std'  => '',
-				'type' => 'text',
-			),
-			array(
-				'name' => __('Email','winter'),
-				'desc' => __('Add the info','winter'),
-				'id'   => $prefix . 'email',
-				'std'  => '',
-				'type' => 'text',
-			),
-			array(
-				'name' => __('Google Maps Api Key','winter'),
-				'desc' => __('Get your API key in Google Console.','winter'),
-				'id'   => $prefix . 'googleapi',
-				'std'  => '',
-				'type' => 'text',
-			),
-			array(
-				'name' => __('Contact Form Shortcode','winter'),
-				'desc' => __('You can use any contact for Plugin. Generate the Form and paste the shortcode here. ','winter'),
-				'id'   => $prefix . 'contactformshortcode',
-				'std'  => '',
-				'type' => 'textarea_code',
-			),
+			
 		)
 	);
 
