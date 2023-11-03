@@ -1,40 +1,50 @@
-<?php
-/**
- * The template for displaying all single posts
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
- *
- * @package Winter
- */
+<?php get_header(); ?>
 
-get_header();
-?>
+<section class="center-align">
 
-	<main id="primary" class="site-main">
 
-		<?php
-		while ( have_posts() ) :
-			the_post();
+	<!-- Blog Single -->
+	<?php while (have_posts()) : the_post() ?>
+		<article class="blog-single">
 
-			get_template_part( 'template-parts/content', get_post_type() );
+			<div class="img">
+				<div class="img-bord">
+					<?php echo get_the_post_thumbnail($post->ID, 'post_single') ?>
+				</div>
+				<div class="info cf">
+					<span class="time"><?php echo get_the_date() ?></span>
+					<span class="comments">25</span>
+					<span class="by" style="background-image: url('<?php echo get_template_directory_uri() ?>/assets/images/admin.png');"><?php echo get_the_author() ?></span>
+				</div>
+				<div class="wave"></div>
+			</div>
 
-			the_post_navigation(
-				array(
-					'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous:', 'winter' ) . '</span> <span class="nav-title">%title</span>',
-					'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next:', 'winter' ) . '</span> <span class="nav-title">%title</span>',
-				)
-			);
+			<?php the_content(); ?>
+			<!-- -->
+			<div class="dotted-line first"></div>
 
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
+			<div class="category cf">
+				<h4 class="categ">Category: <?php the_category(', ') ?>/ Tags: <?php the_tags('', ', ', '') ?></h4>
+				<div class="share">
+					<h4>Share: </h4>
+					<ul>
+						<li class="facebook"><a onclick="window.open(this.href, 'Share on Facebook', 'width=600,height=300'); return false" href="<?php echo ale_get_share('fb', get_the_permalink(), get_the_title()); ?>"></a></li>
+						<li class="pinterest"><a onclick="window.open(this.href, 'Share on Pinteres', 'width=600,height=300'); return false" href="<?php echo ale_get_share('pin', get_the_permalink(), get_the_title()); ?>"></a></li>
+						<li class="twitter"><a onclick="window.open(this.href, 'Share on Twitter', 'width=600,height=300'); return false" href="<?php echo ale_get_share('twi', get_the_permalink(), get_the_title()); ?>"></a></li>
+					</ul>
+				</div>
+			</div>
 
-		endwhile; // End of the loop.
-		?>
+			<?php comments_template()?>
 
-	</main><!-- #main -->
 
+
+		</article>
+	<?php endwhile; ?>
+
+</section>
+
+</section>
 <?php
 get_sidebar();
 get_footer();

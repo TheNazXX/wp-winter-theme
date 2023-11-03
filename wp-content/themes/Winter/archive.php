@@ -1,51 +1,43 @@
-<?php
-/**
- * The template for displaying archive pages
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package Winter
- */
+<?php get_header(); ?>
 
-get_header();
-?>
 
-	<main id="primary" class="site-main">
+<section class="center-align">
+	<article class="blog">
+			<div class="items cf">
 
-		<?php if ( have_posts() ) : ?>
+			<?php if(have_posts()): while(have_posts()): the_post()?>
+					<div class="col-3">
+							<a href="<?php the_permalink()?>">
+								<?php echo get_the_post_thumbnail(get_the_ID(), 'post_front')?>
+							</a>
+							<div class="info cf">
+									<div class="time"><?php echo get_the_date()?></div>
+									<a href="<?php the_permalink()?>" class="comments"><?php echo comments_number() ?></a>
+							</div>
+							<div class="text">
+									<a href="<?php the_permalink()?>" class="caption"><?php the_title()?></a>
+									<p>
+										<?php the_excerpt() ?>
+									</p>
+							</div>
+							<div class="wave"></div> 
+					</div>	
 
-			<header class="page-header">
-				<?php
-				the_archive_title( '<h1 class="page-title">', '</h1>' );
-				the_archive_description( '<div class="archive-description">', '</div>' );
-				?>
-			</header><!-- .page-header -->
+					<?php endwhile; endif;?>
+			</div>
+	</article>
+</section>
 
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
 
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
 
-			endwhile;
 
-			the_posts_navigation();
+<div class="pagination">
+	<?php echo paginate_links([
+		'prev_next' => false,
+		'current_class' => 'active'
+	]); ?>
 
-		else :
+</div>
 
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
-	</main><!-- #main -->
-
-<?php
-get_sidebar();
-get_footer();
+</section>
+<?php get_footer(); ?>

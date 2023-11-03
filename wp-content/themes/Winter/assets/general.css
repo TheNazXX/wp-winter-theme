@@ -1219,15 +1219,15 @@ header nav > ul > li a {
 }
 /* Pagination
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
-article.pagination {
+div.pagination {
   margin: 10px 0 75px;
   width: 100%;
   text-align: center;
 }
-article.pagination.gall {
+div.pagination.gall {
   margin-top: 0;
 }
-article.pagination a {
+div.pagination a, div.pagination span.page-numbers{ 
   background: url("images/pagination.png") no-repeat;
   display: inline-block;
   overflow: hidden;
@@ -1242,35 +1242,35 @@ article.pagination a {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-article.pagination a:nth-child(4n+1) {
+div.pagination a:nth-child(4n+1) {
   background-position: -2px -2px;
 }
-article.pagination a:nth-child(4n+1):hover,
-article.pagination a:nth-child(4n+1).active {
+div.pagination a:nth-child(4n+1):hover,
+div.pagination span:nth-child(4n+1).current {
   background-position: -2px -43px;
   color: #fff;
 }
-article.pagination a:nth-child(4n+2) {
+div.pagination a:nth-child(4n+2) {
   background-position: -43px -2px;
 }
-article.pagination a:nth-child(4n+2):hover,
-article.pagination a:nth-child(4n+2).active {
+div.pagination a:nth-child(4n+2):hover,
+div.pagination span:nth-child(4n+2).current {
   background-position: -41px -43px;
   color: #fff;
 }
-article.pagination a:nth-child(4n+3) {
+div.pagination a:nth-child(4n+3) {
   background-position: -43px -2px;
 }
-article.pagination a:nth-child(4n+3):hover,
-article.pagination a:nth-child(4n+3).active {
+div.pagination a:nth-child(4n+3):hover,
+div.pagination span:nth-child(4n+3).current {
   background-position: -41px -43px;
   color: #fff;
 }
-article.pagination a:nth-child(4n+4) {
+div.pagination a:nth-child(4n+4) {
   background-position: -83px -2px;
 }
-article.pagination a:nth-child(4n+4):hover,
-article.pagination a:nth-child(4n+4).active {
+div.pagination a:nth-child(4n+4):hover,
+div.pagination span:nth-child(4n+4).current {
   background-position: -81px -43px;
   color: #fff;
 }
@@ -1660,7 +1660,7 @@ article.recent-blog-home .items a:hover > img {
   border: 13px solid rgba(0, 0, 0, 0.12);
 }
 article.recent-blog-home .items .info {
-  margin-top: 20px;
+  margin: 20px 0 10px;
 }
 article.recent-blog-home .items .info .time {
   float: left;
@@ -1690,7 +1690,7 @@ article.recent-blog-home .items .info .comments:hover {
   color: #ffd800;
 }
 article.recent-blog-home .items .text {
-  margin-top: 10px;
+  margin-top: auto;
 }
 article.recent-blog-home .items .text a.caption {
   color: #ffd800;
@@ -1916,6 +1916,14 @@ article.blog-single .category .share h4 {
   margin-right: 15px;
   line-height: 25px;
 }
+article.blog-single .category h4 a{
+  opacity: .7;
+  color: inherit;
+  transition: all .4s;
+}
+article.blog-single .category h4 a:hover{
+  opacity: 1;
+}
 article.blog-single .category .share ul li {
   float: left;
   margin-right: 10px;
@@ -2000,8 +2008,10 @@ article.blog-single .comments .reply {
 }
 article.blog-single .comments .comment .avatar,
 article.blog-single .comments .reply .avatar {
-  width: 131px;
   float: left;
+}
+article.blog-single .comments .comment .avatar{
+  width: auto;
 }
 article.blog-single .comments .comment .avatar img,
 article.blog-single .comments .reply .avatar img {
@@ -2048,14 +2058,14 @@ article.blog-single .comments .reply .text .top .date {
   color: #fff;
   font-size: 13px;
 }
-article.blog-single .comments .comment .text .top .reply-button,
-article.blog-single .comments .reply .text .top .reply-button {
+article.blog-single .comments .comment .text .top .comment-reply-link,
+article.blog-single .comments .reply .text .top .comment-reply-link {
   float: right;
   color: #ffd800;
   font-size: 13px;
 }
-article.blog-single .comments .comment .text .top .reply-button:hover,
-article.blog-single .comments .reply .text .top .reply-button:hover {
+article.blog-single .comments .comment .text .top .comment-reply-link:hover,
+article.blog-single .comments .reply .text .top .comment-reply-link:hover {
   opacity: 0.7;
 }
 article.blog-single .comments .comment .text > p,
@@ -2073,8 +2083,13 @@ article.blog-single .comments .reply .enter {
   background: url("images/reply.png") no-repeat center;
 }
 article.blog-single .comments .reply .avatar {
-  width: 131px;
+
   float: left;
+}
+
+.comment-edit-link{
+  color: #ffd800;
+  font-weight: 600;
 }
 article.blog-single .comments .reply .text {
   width: 70%;
@@ -2083,7 +2098,7 @@ article.blog-single .comments .reply .text {
 article.blog-single .respond {
   margin-top: 60px;
   margin-bottom: 100px;
-  height: 400px;
+  height: 450px;
   position: relative;
   background: url("images/comments-back.png") no-repeat bottom;
 }
@@ -2106,8 +2121,13 @@ article.blog-single .respond .top h2 {
   text-shadow: 0 2px 0 rgba(255, 255, 255, 0.5);
 }
 article.blog-single .respond form {
-  padding-top: 70px;
+  padding-top: 10px;
 }
+
+article.blog-single .respond form p{
+  text-align: center;
+}
+
 article.blog-single .respond form .col-4 input {
   display: block;
   width: 269px;
@@ -4152,6 +4172,7 @@ footer .waves #bui2 {
   article.pagination a {
     margin: 0;
   }
+  
   article.about-us .text p {
     font-size: 12px;
   }

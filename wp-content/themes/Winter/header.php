@@ -49,8 +49,12 @@
 			<!-- Logo -->
 			<a href="<?php echo esc_url(home_url('/')) ?>">
 				<div class="logo float-left">
-					<img class="big-device" src="http://wp1.loc/wp-content/uploads/2023/10/logo.png" alt="logo" width="318px" height="110px">
-					<img class="small-device" src="http://wp1.loc/wp-content/uploads/2023/10/logo-respons.png" alt="logo" width="200px" height="69px">
+					<?php if($winter_options['winter_logo']['url']){?>
+						<img class="big-device" src="<?php echo $winter_options['winter_logo']['url']?>" alt="logo" width="318px" height="110px">	
+					<?php }?>
+					<?php if($winter_options['winter_logo']['url']){?>
+						<img class="small-device" src="<?php echo $winter_options['winter_logo']['url']?>" alt="logo" width="200px" height="69px">	
+					<?php }?>
 					<span><?php echo $winter_options['winter_slogan']; ?></span>
 				</div>
 			</a>
@@ -144,9 +148,28 @@
 			<section class="center-align">
 
 				<div class="title-page">
-					<h2><?php the_title() ?></h2>
-					<div class="page"><span class="home"></span> <a href="<?php echo esc_url(home_url()) ?>">Home</a> &nbsp; <span class="arrow">→</span> &nbsp;
-						<?php the_title() ?></div>
+					<h2><?php 
+					
+					if(is_tag()){
+						echo esc_html_e('Tag Archive: ') . single_tag_title('', false);
+					}
+					else if(is_search()){
+						echo esc_html_e('Search Results for: '). get_search_query();
+					}
+					else if(is_category()){
+						echo esc_html_e('Category: ') . single_term_title();
+					}
+					else if(is_author()){
+						echo esc_html_e('Author: ') . get_the_author();
+					}
+					else {
+						wp_title('');
+					}
+
+					?></h2>
+					<div class="page">
+						<span class="home"></span><?php echo get_breadcrumbs()?></span>
+					</div>
 				</div>
 
 

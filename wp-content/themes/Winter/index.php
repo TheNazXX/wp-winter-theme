@@ -1,37 +1,43 @@
-<?php get_header();?> 
-
-	<main id="primary" class="site-main">
-
-		<?php
-		if ( have_posts() ) :
-
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<div>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</div>
-				<?php
-			endif;
+<?php get_header(); ?>
 
 
-			while ( have_posts() ) :
-				the_post();
+<section class="center-align">
+	<article class="blog">
+			<div class="items cf">
 
-				get_template_part( 'template-parts/content', get_post_type() );
+			<?php if(have_posts()): while(have_posts()): the_post()?>
+					<div class="col-3">
+							<a href="<?php the_permalink()?>">
+								<?php echo get_the_post_thumbnail(get_the_ID(), 'post_front')?>
+							</a>
+							<div class="info cf">
+									<div class="time"><?php echo get_the_date()?></div>
+									<a href="<?php the_permalink()?>" class="comments"><?php echo comments_number() ?></a>
+							</div>
+							<div class="text">
+									<a href="<?php the_permalink()?>" class="caption"><?php the_title()?></a>
+									<p>
+										<?php the_excerpt() ?>
+									</p>
+							</div>
+							<div class="wave"></div> 
+					</div>	
 
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
-	</main>
+					<?php endwhile; endif;?>
+			</div>
+	</article>
 </section>
-<?php
 
-get_footer();
+
+
+
+<div class="pagination">
+	<?php echo paginate_links([
+		'prev_next' => false,
+		'current_class' => 'active'
+	]); ?>
+
+</div>
+
+</section>
+<?php get_footer(); ?>

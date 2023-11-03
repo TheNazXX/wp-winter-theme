@@ -12,18 +12,14 @@ if ( ! defined( '_S_VERSION' ) ) {
 	define( '_S_VERSION', '1.0.0' );
 }
 
-
-
+require get_template_directory() . '/inc/redux-options.php';
 
 function winter_setup() {
-	
 	load_theme_textdomain( 'winter', get_template_directory() . '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
-	
 	add_theme_support( 'title-tag' );
-
 	add_theme_support( 'post-thumbnails' );
 
 	// This theme uses wp_nav_menu() in one location.
@@ -83,13 +79,34 @@ function winter_setup() {
 }
 add_action( 'after_setup_theme', 'winter_setup' );
 
-/**
- * Set the content width in pixels, based on the theme's design and stylesheet.
- *
- * Priority 0 to make it available to lower priority callbacks.
- *
- * @global int $content_width
- */
+add_image_size( 'post_front', 235, 183, true );
+add_image_size( 'post_single', 370, 280, true );
+
+add_image_size( 'gallery_one', 222, 341, true );
+add_image_size( 'gallery_two', 222, 164, true );
+add_image_size( 'gallery_three', 456, 164, true );
+
+add_image_size( 'teacher_photo', 281, 162, true );
+
+add_image_size( 'room_photo', 212, 168, true );
+
+function create_gallery_post_type(){
+	register_post_type('winter_gallery', [
+		'labels' => [
+			'name' => __('Galleries', 'winter'),
+			'singular_name' => __('Gallery', 'winter'),
+		],
+		'public' => true,
+		'has_archive' => true,
+		'menu_icon' => 'dashicons-format-gallery',
+		'menu_position' => 4,
+		'supports' => ['title', 'editor', 'thumbnail']
+	]);
+};
+
+add_action('init', 'create_gallery_post_type');
+
+
 function winter_content_width() {
 	$GLOBALS['content_width'] = apply_filters( 'winter_content_width', 640 );
 }
@@ -121,6 +138,7 @@ add_action( 'widgets_init', 'winter_widgets_init' );
 function winter_scripts() {
 	wp_enqueue_style( 'winter-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_enqueue_style( 'winter-general', get_template_directory_uri() . '/assets/general.css', array(), _S_VERSION , false);
+	wp_enqueue_style( 'winter-custom', get_template_directory_uri() . '/assets/custom.css', array(), _S_VERSION , false);
 	wp_style_add_data( 'winter-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'jquery');
@@ -144,17 +162,16 @@ function ale_add_scripts($hook) {
 }
 add_action('admin_enqueue_scripts', 'ale_add_scripts');
 
-add_image_size('post-front', 235, 183, true);
+
 
 require get_template_directory() . '/inc/custom-header.php';
-
 
 /**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
 
-
+require get_template_directory() . '/inc/breadcrumbs.php';
 
 /**
  * Functions which enhance the theme by hooking into WordPress.
@@ -194,34 +211,11 @@ add_filter('wpcf7_form_elements', function($content) {
 });
 
 
-/**
- * Init Redux Theme Options Settings
- */
-require get_template_directory() . '/inc/redux-options.php';
 
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------//
 
-// Цей код представляє собою функцію aletheme_metaboxes, яка визначає метабокси для сторінок в WordPress. Метабокси додають додатковий контент та налаштування на сторінки редагування записів.
 
-// Основні риси цього коду:
-
-// Ви оголошуєте порожній масив $meta_boxes, який буде містити інформацію про всі метабокси, які ви хочете додати.
-
-// Ви встановлюєте змінну $prefix зі значенням "winter_". Це використовується для створення ідентифікаторів полів метабоксів.
-
-// Далі, ви оголошуєте кожен окремий метабокс, додавши його до масиву $meta_boxes. Кожен метабокс включає такі властивості:
-
-// id: Унікальний ідентифікатор метабокса.
-// title: Назва метабокса.
-// pages: Типи записів, на яких він буде відображатися.
-// context: Розташування метабокса (наприклад, "normal").
-// priority: Пріоритет відображення метабокса.
-// show_names: Показ імен полів зліва (булеве значення).
-// show_on: Умови, при яких метабокс буде відображатися (у цьому прикладі, він відображатиметься на сторінках з певними шаблонами).
-// Властивість fields містить масив полів, які включаються в метабокс. Кожне поле має свої властивості, такі як name, desc, id, std, type, і т. д. Наприклад, поля можуть бути файлами, текстовими рядками чи редакторами.
-
-// Цей код додає метабокси для різних сторінок та визначає, які поля будуть доступні для редагування на цих сторінках. Метабокси використовуються для розширення можливостей редагування контенту в WordPress та налаштування параметрів для сторінок.
 
 function aletheme_metaboxes($meta_boxes) {
 
@@ -316,6 +310,78 @@ function aletheme_metaboxes($meta_boxes) {
 	);
 
 	return $meta_boxes;
+}
+
+function ale_get_share($type = 'fb', $permalink = false, $title = false) {
+	if (!$permalink) {
+		$permalink = get_permalink();
+	}
+	if (!$title) {
+		$title = get_the_title();
+	}
+	switch ($type) {
+		case 'twi':
+			return 'http://twitter.com/home?status=' . $title . '+-+' . $permalink;
+			break;
+		case 'fb':
+			return 'http://www.facebook.com/sharer.php?u=' . $permalink . '&t=' . $title;
+			break;
+		case 'goglp':
+			return 'https://plus.google.com/share?url='. urlencode($permalink);
+			break;
+		case 'pin':
+			return 'http://pinterest.com/pin/create/button/?url=' . $permalink;
+			break;
+		default:
+			return '';
+	}
+}
+
+function winter_comment($comment, $args, $depth) {
+	$GLOBALS['comment'] = $comment;
+	extract($args, EXTR_SKIP);
+
+	if ( 'article' == $args['style'] ) {
+		$tag = 'article';
+		$add_below = 'comment';
+	} else {
+		$tag = 'article';
+		$add_below = 'comment';
+	}
+
+	?>
+	<<?php echo $tag ?> <?php comment_class(empty( $args['has_children'] ) ? '' :'parent') ?> id="comment-<?php comment_ID() ?>" itemscope itemtype="http://schema.org/Comment">
+
+	<div class="<?php if($depth > 1){ echo 'reply'; } else { ?>comment<?php } ?> cf">
+		<?php
+
+		if($depth == 2){ ?><div class="enter"></div><?php } ?>
+		<div class="avatar">
+			<?php echo get_avatar( $comment, 105 ); ?>
+			<h4><?php comment_author(); ?></h4>
+		</div>
+		<div class="text">
+			<div class="top">
+				<h4 class="date">Date<?php esc_html('Date','winter');?>: <?php comment_date() ?></h4>
+				<?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+			</div>
+			<div class="dotted-line"></div>
+
+			<?php if ($comment->comment_approved == '0') : ?>
+				<p class="comment-meta-item"><?php esc_html('Your comment is awaiting moderation.','bebe');?></p>
+			<?php endif; ?>
+			<?php comment_text() ?>
+
+			<p><?php edit_comment_link('<p class="comment-meta-item">'.esc_html__('Edit this comment','winter').'</p>','',''); ?></p>
+		</div>
+	</div>
+
+<?php }
+
+// end of awesome semantic comment
+
+function winter_comment_close() {
+	echo '</article>';
 }
 
 

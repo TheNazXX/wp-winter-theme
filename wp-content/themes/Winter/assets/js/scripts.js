@@ -52,14 +52,13 @@ jQuery(function ($) {
   }
 
   if($('#photo-gallery').length){
-    ('#photo-gallery').flexslider({
+    $('#photo-gallery').flexslider({
         animation: 'slide',
         controlNav: false,
         nextText: '',
         prevText: '',
       });
   }
-
 });
 
 
@@ -86,13 +85,4 @@ function InitRoom() {
   });
 }
 
-/* Init Gallery
-/* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
-function InitGallery() {
-  jQuery('#gallery-slider').flexslider({
-    animation: 'fade',
-    controlNav: true,
-    nextText: '',
-    prevText: '',
-  });
-}
+

@@ -1,0 +1,12 @@
+.post_items{
+  display: flex;
+}
+
+.post_item{
+  display: flex;
+  flex-direction: column;
+}
+
+.breadcrumbs{
+  white-space: nowrap;
+}
