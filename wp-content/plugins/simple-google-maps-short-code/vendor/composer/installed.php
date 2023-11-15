@@ -1,0 +1,52 @@
+<?php return array(
+    'root' => array(
+        'name' => 'fullworks/simple-google-maps-shortcode-project',
+        'pretty_version' => '1.5.6.x-dev',
+        'version' => '1.5.6.9999999-dev',
+        'reference' => 'f99a61022a8bd7a55432084194b3a9392fc00d42',
+        'type' => 'wordpress-plugin',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'dev' => true,
+    ),
+    'versions' => array(
+        'alanef/plugindonation_lib' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '2256b23424ea8ed329585bfe91012eed2e884582',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../alanef/plugindonation_lib',
+            'aliases' => array(
+                0 => '9999999-dev',
+            ),
+            'dev_requirement' => false,
+        ),
+        'fullworks/simple-google-maps-shortcode-project' => array(
+            'pretty_version' => '1.5.6.x-dev',
+            'version' => '1.5.6.9999999-dev',
+            'reference' => 'f99a61022a8bd7a55432084194b3a9392fc00d42',
+            'type' => 'wordpress-plugin',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'squizlabs/php_codesniffer' => array(
+            'pretty_version' => '3.7.1',
+            'version' => '3.7.1.0',
+            'reference' => '1359e176e9307e906dc3d890bcc9603ff6d90619',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../squizlabs/php_codesniffer',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'wp-coding-standards/wpcs' => array(
+            'pretty_version' => '2.3.0',
+            'version' => '2.3.0.0',
+            'reference' => '7da1894633f168fe244afc6de00d141f27517b62',
+            'type' => 'phpcodesniffer-standard',
+            'install_path' => __DIR__ . '/../wp-coding-standards/wpcs',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+    ),
+);

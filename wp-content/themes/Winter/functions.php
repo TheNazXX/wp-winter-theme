@@ -76,21 +76,25 @@ function winter_setup() {
 			'flex-height' => true,
 		)
 	);
+
+	add_action( 'after_setup_theme', 'winter_setup' );
+
+	add_image_size( 'post_front', 235, 183, true );
+	add_image_size( 'post_single', 370, 280, true );
+
+	add_image_size( 'gallery_one', 222, 341, true );
+	add_image_size( 'gallery_two', 222, 164, true );
+	add_image_size( 'gallery_three', 456, 164, true );
+
+	add_image_size( 'teacher_photo', 281, 162, true );
+
+	add_image_size( 'room_photo', 212, 168, true );
 }
-add_action( 'after_setup_theme', 'winter_setup' );
 
-add_image_size( 'post_front', 235, 183, true );
-add_image_size( 'post_single', 370, 280, true );
+add_action('after_setup_theme', 'winter_setup');
 
-add_image_size( 'gallery_one', 222, 341, true );
-add_image_size( 'gallery_two', 222, 164, true );
-add_image_size( 'gallery_three', 456, 164, true );
 
-add_image_size( 'teacher_photo', 281, 162, true );
-
-add_image_size( 'room_photo', 212, 168, true );
-
-function create_gallery_post_type(){
+function create_posts_type(){
 	register_post_type('winter_gallery', [
 		'labels' => [
 			'name' => __('Galleries', 'winter'),
@@ -102,9 +106,21 @@ function create_gallery_post_type(){
 		'menu_position' => 4,
 		'supports' => ['title', 'editor', 'thumbnail']
 	]);
+
+	register_post_type('winter_teachers', [
+		'labels' => [
+			'name' => __('Teachers', 'winter'),
+			'singular_name' => __('Teacher', 'winter'),
+		],
+		'public' => true,
+		'has_archive' => true,
+		'menu_icon' => 'dashicons-welcome-learn-more',
+		'menu_position' => 4,
+		'supports' => ['title', 'editor', 'thumbnail'],
+	]);
 };
 
-add_action('init', 'create_gallery_post_type');
+add_action('init', 'create_posts_type');
 
 
 function winter_content_width() {
@@ -158,6 +174,7 @@ add_action( 'wp_enqueue_scripts', 'winter_scripts' );
 function ale_add_scripts($hook) {
 	if('post-new.php' == $hook || 'post.php' == $hook){
 		wp_enqueue_script( 'winter_metaboxes', get_template_directory_uri()  . '/assets/js/admin/metaboxes.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-datepicker', 'media-upload', 'thickbox') );
+		wp_enqueue_script( 'winter_metaboxes-gallery', get_template_directory_uri()  . '/assets/js/admin/metabox-gallery.js', array('jquery') );
 	}
 }
 add_action('admin_enqueue_scripts', 'ale_add_scripts');
@@ -188,6 +205,7 @@ require get_template_directory() . '/inc/tgm-list.php';
  * Init Metaboxes.
  */
 require get_template_directory() . '/inc/metaboxes.php';
+require get_template_directory() . '/inc/gallery-meta.php';
 
 
 /**
@@ -309,6 +327,90 @@ function aletheme_metaboxes($meta_boxes) {
 		)
 	);
 
+
+	$meta_boxes[] = array(
+		'id'         => 'about_page_metabox',
+		'title'      => 'About Page Options',
+		'pages'      => array( 'page', ), // Post type
+		'context'    => 'normal',
+		'priority'   => 'high',
+		'show_names' => true, // Show field names on the left
+		'show_on'    => array( 'key' => 'page-template', 'value' => array('template-about.php'), ), // Specific post templates to display this metabox
+		'fields' => array(
+			array(
+				'name' => __('Teachers section title', 'winter'),
+				'desc' => __('Type the title for teachers section','winter'),
+				'id'   => $prefix . 'teachers_section_title',
+				'type' => 'text',
+			)
+		)
+	);
+
+	$meta_boxes[] = array(
+		'id'         => 'teachers_metabox',
+		'title'      => 'Teacher Socials Links',
+		'pages'      => array( 'winter_teachers', ), // Post type
+		'context'    => 'normal',
+		'priority'   => 'high',
+		'show_names' => true, // Show field names on the left
+		'fields' => array(
+			array(
+				'name' => __('Fackebook', 'winter'),
+				'desc' => __('Type the link on facebook','winter'),
+				'id'   => $prefix . 'teacher_facebook',
+				'type' => 'text',
+			),
+			array(
+				'name' => __('Pinterest', 'winter'),
+				'desc' => __('Type the link on pinterest','winter'),
+				'id'   => $prefix . 'teacher_pinterest',
+				'type' => 'text',
+			),
+			array(
+				'name' => __('Twitter', 'winter'),
+				'desc' => __('Type the link on twitter','winter'),
+				'id'   => $prefix . 'teacher_twitter',
+				'type' => 'text',
+			),
+		)
+	);
+
+	$meta_boxes[] = array(
+		'id'         => 'contact_metabox',
+		'title'      => 'Contacts',
+		'pages'      => array( 'page', ), // Post type
+		'context'    => 'normal',
+		'priority'   => 'high',
+		'show_names' => true, // Show field names on the left
+		'show_on'    => array( 'key' => 'page-template', 'value' => array('template-contact.php'), ), // Specific post templates to display this metabox
+		'fields' => array(
+			array(
+				'name' => __('Address', 'winter'),
+				'desc' => __('Type the address','winter'),
+				'id'   => $prefix . 'contact_address',
+				'type' => 'text',
+			),
+			array(
+				'name' => __('Phone', 'winter'),
+				'desc' => __('Type the phone','winter'),
+				'id'   => $prefix . 'contact_phone',
+				'type' => 'text',
+			),
+			array(
+				'name' => __('Email', 'winter'),
+				'desc' => __('Type the email','winter'),
+				'id'   => $prefix . 'contact_email',
+				'type' => 'text',
+			),
+			array(
+				'name' => __('Contact Form Shortcode', 'winter'),
+				'desc' => __('You can use any contact form Plugin. Genetate the Form and paste the shortcode here','winter'),
+				'id'   => $prefix . 'contact_form_shortcode',
+				'type' => 'textarea_code',
+			),
+		)
+	);	
+
 	return $meta_boxes;
 }
 
@@ -350,43 +452,39 @@ function winter_comment($comment, $args, $depth) {
 	}
 
 	?>
-	<<?php echo $tag ?> <?php comment_class(empty( $args['has_children'] ) ? '' :'parent') ?> id="comment-<?php comment_ID() ?>" itemscope itemtype="http://schema.org/Comment">
+<<?php echo $tag ?> <?php comment_class(empty( $args['has_children'] ) ? '' :'parent') ?>
+  id="comment-<?php comment_ID() ?>" itemscope itemtype="http://schema.org/Comment">
 
-	<div class="<?php if($depth > 1){ echo 'reply'; } else { ?>comment<?php } ?> cf">
-		<?php
+  <div class="<?php if($depth > 1){ echo 'reply'; } else { ?>comment<?php } ?> cf">
+    <?php
 
 		if($depth == 2){ ?><div class="enter"></div><?php } ?>
-		<div class="avatar">
-			<?php echo get_avatar( $comment, 105 ); ?>
-			<h4><?php comment_author(); ?></h4>
-		</div>
-		<div class="text">
-			<div class="top">
-				<h4 class="date">Date<?php esc_html('Date','winter');?>: <?php comment_date() ?></h4>
-				<?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
-			</div>
-			<div class="dotted-line"></div>
+    <div class="avatar">
+      <?php echo get_avatar( $comment, 105 ); ?>
+      <h4><?php comment_author(); ?></h4>
+    </div>
+    <div class="text">
+      <div class="top">
+        <h4 class="date">Date<?php esc_html('Date','winter');?>: <?php comment_date() ?></h4>
+        <?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+      </div>
+      <div class="dotted-line"></div>
 
-			<?php if ($comment->comment_approved == '0') : ?>
-				<p class="comment-meta-item"><?php esc_html('Your comment is awaiting moderation.','bebe');?></p>
-			<?php endif; ?>
-			<?php comment_text() ?>
+      <?php if ($comment->comment_approved == '0') : ?>
+      <p class="comment-meta-item"><?php esc_html('Your comment is awaiting moderation.','bebe');?></p>
+      <?php endif; ?>
+      <?php comment_text() ?>
 
-			<p><?php edit_comment_link('<p class="comment-meta-item">'.esc_html__('Edit this comment','winter').'</p>','',''); ?></p>
-		</div>
-	</div>
+      <p>
+        <?php edit_comment_link('<p class="comment-meta-item">'.esc_html__('Edit this comment','winter').'</p>','',''); ?>
+      </p>
+    </div>
+  </div>
 
-<?php }
+  <?php }
 
 // end of awesome semantic comment
 
 function winter_comment_close() {
 	echo '</article>';
 }
-
-
-
-
-
-
-

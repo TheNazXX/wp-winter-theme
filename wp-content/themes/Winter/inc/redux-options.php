@@ -458,16 +458,16 @@ Redux::set_section(
 Redux::set_section(
 	$opt_name,
 	array(
-		'title'            => esc_html__( 'Temporary', 'winter' ),
-		'id'               => 'temporary',
-		'customizer_width' => '400px',
+		'title'             => esc_html__( 'About Page', 'winter' ),
+		'id'                => 'about-page',
+		'desc'							=> 'slider for about page',
+		'customizer_width'  => '400px',
 		'fields' => [
 			[
-				'id' => 'main_color',
-				'type' => 'color',
-				'transparent' => false,
-				'title' => __('Site Title Color', 'winter'),
-				'subtitle' => __('Pick a title color for the theme', 'winter')
+				'id'       => 'aboutpage_slider',
+					'type'     => 'slides',
+					'title'    => esc_html__( 'Slides Options', 'winter' ),
+					'subtitle' => esc_html__( 'Unlimited Slides', 'winter' ),
 			]
 		]
 	)

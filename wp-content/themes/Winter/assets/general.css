@@ -1543,7 +1543,9 @@ article.our-teachers .col-4 .image ul {
   position: absolute;
   top: 75%;
   left: 50%;
-  margin-left: -61px;
+  display: flex;
+  margin-left: 0;
+  transform: translateX(-50%);
 }
 article.our-teachers .col-4 .image ul li {
   float: left;
@@ -2324,7 +2326,7 @@ article.contacts .respond form textarea {
   font-family: 'Arial' !important;
   overflow: hidden;
 }
-article.contacts .respond form .submit {
+article.contacts .respond form input[type="submit"] {
   margin: 20px auto 0;
   font-family: 'Arial';
   -webkit-transition: all 0.3s ease;
@@ -2344,12 +2346,13 @@ article.contacts .respond form .submit {
   line-height: 0;
   padding-top: 0;
   vertical-align: top;
+  font-size: 0;
 }
-article.contacts .respond form .submit:hover {
+article.contacts .respond form input[type="submit"]:hover {
   background: url("images/send2-h.png") no-repeat center;
   opacity: 1;
 }
-article.contacts .respond form .submit:active {
+article.contacts .respond form input[type="submit"]:active {
   margin-top: 22px;
 }
 /* Rooms

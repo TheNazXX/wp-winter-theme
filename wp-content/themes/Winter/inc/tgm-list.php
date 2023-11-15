@@ -65,6 +65,12 @@ function winter_register_required_plugins() {
 			'required'  => true,
 		),
 
+		array(
+			'name'      => 'Simple Google Maps Short Code',
+			'slug'      => 'simple-google-maps-short-code',
+			'required'  => true,
+		),
+
 
 
 	);

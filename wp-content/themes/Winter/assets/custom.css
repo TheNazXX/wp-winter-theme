@@ -10,3 +10,9 @@
 .breadcrumbs{
   white-space: nowrap;
 }
+
+article.our-teachers .col-4 .image ul {
+  display: flex;
+  margin-left: 0;
+  transform: translateX(-50%);
+}

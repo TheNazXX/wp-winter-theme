@@ -13,13 +13,13 @@
     </div>
     <div class="text">
       <?php if (get_post_meta(get_the_ID(), 'winter_about_title', true)) { ?>
-        <h2><?php esc_html_e(get_post_meta(get_the_ID(), 'winter_about_title', true)) ?></h2>
+      <h2><?php esc_html_e(get_post_meta(get_the_ID(), 'winter_about_title', true)) ?></h2>
       <?php } ?>
       <?php if (get_post_meta(get_the_ID(), 'winter_about_desc', true)) { ?>
-        <p><?php esc_html_e(get_post_meta(get_the_ID(), 'winter_about_desc', true)) ?></p>
+      <p><?php esc_html_e(get_post_meta(get_the_ID(), 'winter_about_desc', true)) ?></p>
       <?php } ?>
       <?php if (get_post_meta(get_the_ID(), 'winter_about_link', true)) { ?>
-        <a class="more" href="<?php esc_url(get_post_meta(get_the_ID(), 'winter_about_link', true)) ?>">More ></a>
+      <a class="more" href="<?php esc_url(get_post_meta(get_the_ID(), 'winter_about_link', true)) ?>">More ></a>
       <?php } ?>
     </div>
   </aside>
@@ -60,21 +60,21 @@
 
     while ($home_post->have_posts()) : $home_post->the_post(); ?>
 
-      <div class="col-3 post_item">
-        <a href="<?php the_permalink(); ?>">
-          <?php echo get_the_post_thumbnail(get_the_ID(), 'post_front'); ?>
-        </a>
-        <div class="info cf">
-          <div class="time"><?php echo get_the_date() ?></div>
-          <a href="<?php the_permalink(); ?>" class="comments"><?php echo comments_number() ?></a>
-        </div>
-        <div class="text">
-          <a href="<?php the_permalink(); ?>" class="caption"><?php esc_html_e(the_title()) ?></a>
-          <p>
-            <?php the_excerpt() ?>
-          </p>
-        </div>
+    <div class="col-3 post_item">
+      <a href="<?php the_permalink(); ?>">
+        <?php echo get_the_post_thumbnail(get_the_ID(), 'post_front'); ?>
+      </a>
+      <div class="info cf">
+        <div class="time"><?php echo get_the_date() ?></div>
+        <a href="<?php the_permalink(); ?>" class="comments"><?php echo comments_number() ?></a>
       </div>
+      <div class="text">
+        <a href="<?php the_permalink(); ?>" class="caption"><?php esc_html_e(the_title()) ?></a>
+        <p>
+          <?php the_excerpt() ?>
+        </p>
+      </div>
+    </div>
 
 
     <?php
@@ -94,7 +94,7 @@
   <div id="photo-gallery">
     <ul class="slides">
 
-    <?php
+      <?php
       $gallery_post = new WP_Query([
         'post_type' => 'winter_gallery',
         'posts_per_page' => 10,  // -1 - Все посты
@@ -106,7 +106,7 @@
       $currentImg = 0;
 
       for($i = 1; $i <= intval($countPosts / $countImagesOnSlide); $i++){?>
-    
+
       <li>
         <div class="items<?php echo $i?>">
           <?php 
@@ -115,26 +115,26 @@
               $currentImg++;
               ?>
 
-              <?php if($currentImg == 1 or $currentImg == 6){ ?>
-                <a href="<?php the_permalink()?>"><?php echo get_the_post_thumbnail(get_the_ID(), 'gallery_one')?>
-              </a>
-              <?php } ?>
+          <?php if($currentImg == 1 or $currentImg == 6){ ?>
+          <a href="<?php the_permalink()?>"><?php echo get_the_post_thumbnail(get_the_ID(), 'gallery_one')?>
+          </a>
+          <?php } ?>
 
-              <?php if($currentImg == 2 or $currentImg == 5 or $currentImg == 7 or $currentImg == 10){ ?>
-                <a href="<?php the_permalink()?>"><?php echo get_the_post_thumbnail(get_the_ID(), 'gallery_two')?>
-              </a>
-              <?php } ?>
+          <?php if($currentImg == 2 or $currentImg == 5 or $currentImg == 7 or $currentImg == 10){ ?>
+          <a href="<?php the_permalink()?>"><?php echo get_the_post_thumbnail(get_the_ID(), 'gallery_two')?>
+          </a>
+          <?php } ?>
 
-              <?php if($currentImg == 3 or $currentImg == 4 or $currentImg == 8 or $currentImg == 9){ ?>
-                <a href="<?php the_permalink()?>"><?php echo get_the_post_thumbnail(get_the_ID(), 'gallery_three')?>
-              </a>
-              <?php } ?> 
-      
-            <?php } 
+          <?php if($currentImg == 3 or $currentImg == 4 or $currentImg == 8 or $currentImg == 9){ ?>
+          <a href="<?php the_permalink()?>"><?php echo get_the_post_thumbnail(get_the_ID(), 'gallery_three')?>
+          </a>
+          <?php } ?>
+
+          <?php } 
           ?>
         </div>
       </li>
-      <?php wp_reset_postdata(); }?> 
+      <?php wp_reset_postdata(); }?>
 
     </ul>
   </div>

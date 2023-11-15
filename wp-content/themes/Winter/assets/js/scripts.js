@@ -59,20 +59,16 @@ jQuery(function ($) {
         prevText: '',
       });
   }
-});
-
-
-
-/* Init About
-/* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
-function InitAbout() {
-  jQuery('#about-slider').flexslider({
+    
+  $('#about-slider').flexslider({
     animation: 'fade',
     controlNav: false,
     nextText: '',
     prevText: '',
   });
-}
+});
+
+
 
 /* Init Room
 /* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
