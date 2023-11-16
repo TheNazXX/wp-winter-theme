@@ -97,7 +97,7 @@ add_action('after_setup_theme', 'winter_setup');
 function create_posts_type(){
 	register_post_type('winter_gallery', [
 		'labels' => [
-			'name' => __('Galleries', 'winter'),
+			'name' => __('Gallery', 'winter'),
 			'singular_name' => __('Gallery', 'winter'),
 		],
 		'public' => true,
@@ -118,10 +118,36 @@ function create_posts_type(){
 		'menu_position' => 4,
 		'supports' => ['title', 'editor', 'thumbnail'],
 	]);
-};
 
+	register_post_type('winter_rooms', [
+		'labels' => [
+			'name' => __('Rooms', 'winter'),
+			'singular_name' => __('Room', 'winter'), 
+		],
+		'public' => true,
+		'has_archive' => true,
+		'rewrite' => ['slug' => 'rooms'],
+		'menu_icon' => 'dashicons-admin-home',
+		'menu_position' => 4,
+		'supports' => ['title', 'editor', 'thumbnail']
+	]);
+};
 add_action('init', 'create_posts_type');
 
+
+
+function winter_tax(){
+	register_taxonomy(
+		'gallery-category',
+		'winter_gallery',
+		[
+			'label' => __('Category'),
+			'rewrite' => ['slug' => 'gallery-category'],
+			'hierarchical' => true
+		]
+	);
+};
+add_action('init', 'winter_tax');
 
 function winter_content_width() {
 	$GLOBALS['content_width'] = apply_filters( 'winter_content_width', 640 );

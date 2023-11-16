@@ -1,54 +1,33 @@
-<?php
-/**
- * Template part for displaying page content in page.php
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package Winter
- */
+<article class="blog">
+  <div class="items cf">
 
-?>
-<h1>Content page</h1>
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-	</header><!-- .entry-header -->
+    <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-	<?php winter_post_thumbnail(); ?>
+    <div class="col-3">
+      <a href="<?php echo get_the_permalink()?>">
+        <?php echo get_the_post_thumbnail(get_the_ID(), 'post_front'); ?>
+      </a>
+      <div class="info cf">
+        <div class="time"><?php echo get_the_date(); ?></div>
+        <a href="<?php echo get_the_permalink()?>" class="comments"><?php echo comments_number(); ?></a>
+      </div>
+      <div class="text">
+        <a href="<?php echo get_the_permalink()?>" class="caption"><?php the_title(); ?></a>
+        <?php the_excerpt(); ?>
+      </div>
+      <div class="wave"></div>
+    </div>
 
-	<div class="entry-content">
-		<?php
-		the_content();
+    <?php endwhile; else : ?>
+    <?php get_template_part('template-parts/content', 'none') ?>
+    <?php endif; ?>
 
-		wp_link_pages(
-			array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'winter' ),
-				'after'  => '</div>',
-			)
-		);
-		?>
-	</div><!-- .entry-content -->
+  </div>
+</article>
 
-	<?php if ( get_edit_post_link() ) : ?>
-		<footer class="entry-footer">
-			<?php
-			edit_post_link(
-				sprintf(
-					wp_kses(
-						/* translators: %s: Name of current post. Only visible to screen readers */
-						__( 'Edit <span class="screen-reader-text">%s</span>', 'winter' ),
-						array(
-							'span' => array(
-								'class' => array(),
-							),
-						)
-					),
-					wp_kses_post( get_the_title() )
-				),
-				'<span class="edit-link">',
-				'</span>'
-			);
-			?>
-		</footer><!-- .entry-footer -->
-	<?php endif; ?>
-</article><!-- #post-<?php the_ID(); ?> -->
+<div class="pagination">
+  <?php echo paginate_links([
+		'prev_next' => false,
+		'current_class' => 'active',
+	]); ?>
+</div>

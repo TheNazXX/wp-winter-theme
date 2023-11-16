@@ -1,7 +1,7 @@
 <?php
 
 function add_gallery_metabox($post_type) {
-	$types = array('page','rooms','gallery');
+	$types = array('page','winter_rooms','winter_gallery');
 	if (in_array($post_type, $types)) {
 		add_meta_box(
 			'gallery-metabox',

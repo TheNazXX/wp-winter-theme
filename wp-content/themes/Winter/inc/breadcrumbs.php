@@ -17,12 +17,14 @@ function get_breadcrumbs() {
 	$after          = '</span>';
 
 	global $post;
+
+	
 	$home_link    = home_url('/');
 	$link_before  = '<span>';
 	$link_after   = '</span>';
 	$link_attr    = ' ';
 	$link         = $link_before . '<a' . $link_attr . ' href="%1$s">%2$s</a>' . $link_after;
-	$parent_id    = $parent_id_2 = $post->post_parent;
+	$parent_id    = $parent_id_2 = ($post != null) ? $post->post_parent : '';
 	$frontpage_id = get_option('page_on_front');
 
 	if (is_home() || is_front_page()) {

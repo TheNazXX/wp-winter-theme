@@ -59,26 +59,36 @@ jQuery(function ($) {
         prevText: '',
       });
   }
+
+  if($('#about-slider').length){
+    $('#about-slider').flexslider({
+      animation: 'fade',
+      controlNav: false,
+      nextText: '',
+      prevText: '',
+    });
+  };
+
+  if($('#room-slider').length){
+    $('#room-slider').flexslider({
+      animation: 'fade',
+      controlNav: false,
+      nextText: '',
+      prevText: '',
+    });
+  };
+
+  if($('#gallery-slider').length){
+    $('#gallery-slider').flexslider({
+      animation: 'fade',
+      controlNav: true,
+      nextText: '',
+      prevText: '',
+    });
+  };
     
-  $('#about-slider').flexslider({
-    animation: 'fade',
-    controlNav: false,
-    nextText: '',
-    prevText: '',
-  });
 });
 
 
-
-/* Init Room
-/* ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## */
-function InitRoom() {
-  jQuery('#room-slider').flexslider({
-    animation: 'fade',
-    controlNav: false,
-    nextText: '',
-    prevText: '',
-  });
-}
 
 

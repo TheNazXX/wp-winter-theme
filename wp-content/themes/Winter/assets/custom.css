@@ -16,3 +16,22 @@ article.our-teachers .col-4 .image ul {
   margin-left: 0;
   transform: translateX(-50%);
 }
+
+.flex-control-nav{
+  display: flex;
+  justify-content: center;
+}
+
+article .items{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.no-results-title{
+  padding-top: 50px;
+  margin: 0 auto;
+  text-align: center;
+  color: #ffd800;
+  font-size: 24px;
+  line-height: 27px;
+}
